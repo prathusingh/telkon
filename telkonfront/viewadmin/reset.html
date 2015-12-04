@@ -1,0 +1,52 @@
+<!--ACCOUNT - RESET PASSWORD-->
+<div class="profile-edit tab-pane" ng-controller="ResetCtrl">
+    <h2 class="heading-md text-center">
+        Reset your password<br/><br/>
+        <span class="label label-danger text-center">{{message}}</span>
+    </h2>
+
+    </br>
+
+    <form class="sky-form" id="sky-form4">
+
+        <dl class="dl-horizontal">
+
+            <dt>Old password</dt>
+            <dd>
+                <section>
+                    <label ng-class="{'input': true, 'state-error': errorCode == 3}">
+                        <input type="password" id="password" name="password" placeholder="Old password" ng-model="oldPassword">
+                    </label>
+                </section>
+            </dd>
+
+            <dt>New Password</dt>
+            <dd>
+                <section>
+                    <label ng-class="{'input': true, 'state-error': errorCode == 1 || errorCode == 2}">
+                        <input type="password" name="passwordConfirm" placeholder="New password" ng-model="newPassword">
+                    </label>
+                </section>
+            </dd>
+
+            <dt>Confirm Password</dt>
+            <dd>
+                <section>
+                    <label ng-class="{'input': true, 'state-error': errorCode == 1 || errorCode == 2}">
+                        <input type="password" name="passwordConfirm" placeholder="Confirm password" ng-model="repeatPassword">
+                    </label>
+                </section>
+            </dd>
+
+        </dl>
+
+        <br/>
+        <hr>
+
+        <button type="button" class="btn-u btn-u-default" ng-click="cancel()">Cancel</button>
+        <button class="btn-u" type="submit" ng-click="resetPassword()">Save Changes</button>
+
+    </form>
+                                
+</div>
+<!--End Account - Reset Password-->

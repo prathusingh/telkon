@@ -1,0 +1,48 @@
+<!--ACCOUNT - RESET PASSWORD-->
+<div class="profile-edit tab-pane" ng-controller="BecomeMemberCtrl">
+    <h2 class="heading-md text-center">
+        Register to become MEMBER<br/><br/>
+        <span class="label label-danger text-center">{{message}}</span>
+    </h2>
+
+    </br>
+
+    <form class="sky-form" id="sky-form4">
+
+        <dl class="dl-horizontal">
+
+            <dt>Flat</dt>
+            <dd>
+                <section>
+                    <label ng-class="{'input': true, 'state-error': errorCode == 1}">
+                        <input type="text" id="text" name="text" placeholder="Enter your flat number" ng-model="flat">
+                    </label>
+                </section>
+            </dd>
+
+            <dt>Residence Type</dt>
+            <dd>
+                <section>
+                    <label class="radio">
+                                <input type="radio" ng-model="residencetype" value="1">
+                                    <i ng-click="residencetype=1" class="rounded-x"></i> Tenant 
+                            </label>
+                            <label class="radio">
+                                <input type="radio" ng-model="residencetype" value="0">
+                                <i ng-click="residencetype=0" class="rounded-x"></i> Owner
+                            </label>
+                </section>
+            </dd>
+
+        </dl>
+
+        <br/>
+        <hr>
+
+        <button type="button" class="btn-u btn-u-default" ng-click="cancel()">Cancel</button>
+        <button class="btn-u" type="submit" ng-click="becomeMember()">Submit</button>
+
+    </form>
+                                
+</div>
+<!--End Account - Reset Password-->

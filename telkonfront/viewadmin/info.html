@@ -1,0 +1,73 @@
+<!--ACCOUNT - PROFILE-->
+<div class="profile-edit tab-pane" ng-controller="InfoCtrl">
+
+    <h2 class="heading-md text-center">
+        Society Information <br>
+        <span ng-if="message" class="label label-red text-center">{{message}}</span>
+    </h2>
+
+    <br/>
+
+    <!-- Progress Bar -->
+    <div ng-if="pageLoading" class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="progress">
+                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    <span class="sr-only">100% Complete</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End - Progress Bar -->
+
+    <div>
+        
+    </div>
+
+
+    <dl ng-if="!pageLoading" class="dl-horizontal">
+        <dt><strong>Name </strong></dt>
+        <dd>
+            {{ societyname }}
+        </dd>
+        <hr>
+
+        <dt><strong>Code </strong></dt>
+        <dd>
+            {{ societycode }}
+        </dd>
+        <hr>
+
+        <dt><strong>Address </strong></dt>
+        <dd>
+            {{ locality }} <br>
+            {{ city }} <br>
+        </dd>
+        <hr>
+
+        <dt><strong>Postal Code </strong></dt>
+        <dd>
+            {{ pincode }}
+        </dd>
+        <hr>
+
+        <dt><strong>Flat Example </strong></dt>
+        <dd>
+            <a href="javascript:void(0)" editable-text="flatsample" onbeforesave="updateFlatsample($data)">
+                {{ flatsample || 'Not Mentioned' }} <span class="glyphicon glyphicon-pencil pull-right"></span>
+            </a>
+        </dd>
+        <hr>
+
+        <dt><strong>Total Flats </strong></dt>
+        <dd>
+            <a href="javascript:void(0)" editable-text="flats" onbeforesave="updateLayoutFlats($data)">
+                {{ flats || 'Not Mentioned' }} <span class="glyphicon glyphicon-pencil pull-right"></span>
+            </a>
+        </dd>
+        <hr>
+
+    </dl>
+                                
+</div>
+<!--End Account Profile-->

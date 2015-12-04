@@ -1,0 +1,169 @@
+<!--ACCOUNT - PROFILE-->
+<div class="profile-edit tab-pane" ng-controller="ProfileCtrl">
+
+    <h2 class="heading-md text-center">
+        Manage your profile <br>
+        <span ng-if="message" class="label label-red text-center">{{message}}</span>
+    </h2>
+
+    <br/>
+
+    <!-- Progress Bar -->
+    <div ng-if="pageLoading" class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="progress">
+                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    <span class="sr-only">100% Complete</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End - Progress Bar -->
+
+    <div ng-if="!pageLoading">
+        <div class="profile-bio">
+            <div class="row">
+                <div class="col-md-5">
+                    <img class="img-responsive md-margin-bottom-10" src="{{ imagedp || 'images/default_profile_photo.png' }}" alt="">
+                    <a class="btn-u btn-u-sm" href="javascript:void(0)">
+                        <span class="glyphicon glyphicon-pencil pull-right" data-toggle="modal" data-target="#upload_dp"></span>
+                    </a>
+                </div>
+                <div class="col-md-7">
+                    
+                    <dl class="dl-horizontal">
+
+                        <dt><strong>Name </strong></dt>
+                        <dd>
+                            <p href="javascript:void(0)" editable-text="name" onbeforesave="updateName($data)">
+                                {{ name || 'Not Mentioned' }} <span class="glyphicon glyphicon-pencil pull-right"></span>
+                            </p>
+                        </dd>
+                        <hr>
+
+                        <dt><strong>Admin Type </strong></dt>
+                        <dd>
+                            {{ admintype || 'Not Mentioned' }}
+                        </dd>
+                        <hr>
+
+                        <dt><strong>Address </strong></dt>
+                        <dd>
+                            {{flat || ''}}<br/>
+                            {{societyname}}<br/>
+                            {{city}}
+                        </dd>
+                        <hr>
+
+                        <dt ng-if="residenceType"><strong>Type of Residence </strong></dt>
+                        <dd ng-if="residenceType">
+                            {{residenceType}}
+                        </dd>
+                        <hr ng-if="residenceType">
+
+                        <dt><strong>Email </strong></dt>
+                        <dd>
+                            {{email}}
+                        </dd>
+                        <hr>
+
+                        <dt><strong>Phone Number </strong></dt>
+                        <dd>
+                            <p href="javascript:void(0)" editable-text="phone" onbeforesave="updatePhone($data)">
+                                {{ phone || 'Not Mentioned' }} <span class="glyphicon glyphicon-pencil pull-right"></span>
+                            </p>
+                        </dd>
+                        <hr>
+
+                        <dt><strong>Position </strong></dt>
+                        <dd>
+                            <p href="javascript:void(0)" editable-text="position" onbeforesave="updatePosition($data)">
+                                {{ position || 'Not Mentioned' }} <span class="glyphicon glyphicon-pencil pull-right"></span>
+                            </p>
+                        </dd>
+                        <hr>
+
+                        <dt><strong>Department </strong></dt>
+                        <dd>
+                            <p href="javascript:void(0)" editable-text="department" onbeforesave="updateDepartment($data)">
+                                {{ department || 'Not Mentioned' }} <span class="glyphicon glyphicon-pencil pull-right"></span>
+                            </p>
+                        </dd>
+                        
+                    </dl>
+
+                </div>
+            </div>    
+        </div>
+    </div>
+      
+    <!--UPLOAD DP-->
+    <div id="upload_dp" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledbody="myModalLabel" aria-hidden="true" style="display: none;">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-no-border">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+
+                <div class="modal-body">
+
+                    <form action="" class="sky-form">
+                        <header>Upload your picture</header>
+
+                        <fieldset>
+
+                            <section>
+
+                                <div class="text-center color-red" ng-if="imageUpload.addMsg && (imageUpload.addErr != 0)">
+                                    <img id="logo-header" src="images/error_32.png" alt="Error"> {{imageUpload.addMsg}}
+                                </div>
+
+                                <div class="text-center color-green" ng-if="imageUpload.addMsg && (imageUpload.addErr == 0)">
+                                    <img id="logo-header" src="images/suc_32.png" alt="Suc"> {{imageUpload.addMsg}}
+                                </div>
+
+                                <div class="text-center" ng-if="imageUpload.isUploading">
+                                    <img src="images/page_load.gif">
+                                </div>
+
+                            </section>
+
+                            <section>
+                                <label class="label">Select an image file</label>
+                                <label for="file" class="input input-file">
+                                    <div class="button">
+                                        <input name="imageFile" type="file" id="fileInput" ng-model="imagedpFile" onchange="this.parentNode.nextSibling.value = this.value" file>
+                                        Browse
+                                    </div><input type="text" readonly>
+                                </label>
+                            </section>
+
+                        </fieldset>
+                    </form>
+
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 text-center">
+                            <div class="cropArea">
+                                <img-crop image="myImage" result-image="myCroppedImage" area-type="square" result-image-size="200" result-image-format="image/png"></img-crop>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+                            <button class="btn btn-primary btn-block margin-top-20" ng-click="upload()">
+                                update
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Upload Dp - End -->
+
+</div>
+<!--End Account Profile-->

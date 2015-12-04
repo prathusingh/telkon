@@ -1,0 +1,439 @@
+/* Add here all your css styles (customizations) */
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+
+.btn-primary {
+    background: #3F9FE0;
+}
+
+.bg-primary {
+    background: #3F9FE0;
+}
+
+strong.main-heading{
+    color: #3F9FE0;
+}
+
+.hover-link:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.data-row:hover {
+    border-left: 2px solid #3F9FE0;
+}
+
+.data-row-right:hover {
+    border-right: 2px solid #3F9FE0;
+}
+
+.data-row-read {
+    color: #9E9E9E;
+    background: #F5F5F5;
+}
+
+.hover-border:hover {
+    border: 2px solid #3F9FE0;
+}
+
+.hover-item:hover {
+    background: #F5F5F5;
+}
+
+.hover-box:hover {
+  border: 2px solid #3F9FE0;
+}
+
+.box-border {
+    border: 2px solid #3F9FE0;
+}
+
+.navbar-bg {
+    background: #EEEEEE;
+}
+
+.fixed-top {
+    position: fixed;
+    top:0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+
+}
+
+.no-border>tbody>tr>td {
+    border: none;
+}
+
+.data-menu {
+    min-width: 75px;
+    background: #EEEEEE;
+}
+
+.modal-header-no-border {
+    border-bottom: none;
+}
+
+.no-bottom-decoration {
+    border-bottom: none;
+}
+
+#change-dp {
+    position: absolute;
+    top: 10px;
+    right:20px;
+    width: 20px;
+    color: #3F9FE0;
+    background: #000000;
+    display: none;
+    cursor: pointer;
+}
+
+#fixed-complaint {
+    position: fixed;
+    display: none;
+}
+
+.tabs-hide{
+    display: none;
+}
+
+
+.service-block-changedp {
+    padding: 0px 0px;
+    cursor: pointer;
+}
+
+.border {
+    border: 1px solid #3F9FE0;
+}
+
+.border-top {
+    border-top: 1px solid #3F9FE0;
+}
+
+.border-left {
+    border-left: 1px solid #3F9FE0;
+}
+
+.border-right {
+    border-right: 1px solid #3F9FE0;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #3F9FE0;
+}
+
+.profile-field-color {
+    color: #000;
+}
+
+.ng-false {
+
+}
+
+.new-data {
+    background-color: #e0f5ff;
+}
+
+.main-alert-div {
+    position: absolute;
+    margin: auto;
+    left:0;
+    right:0;
+    top:5; 
+    bottom:0;
+
+}
+
+.page-load-img {
+    width: 50px;
+    height: 50px;
+}
+
+.modal-page-load {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 )
+                url('../images/page_load.gif')
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal-page-load {
+    display: block;
+}
+
+div.blank {
+    display: none;
+}
+
+.animate-if {
+  background:white;
+  border:1px solid black;
+  padding:10px;
+}
+
+.animate-if.ng-enter, .animate-if.ng-leave {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+}
+
+.animate-if.ng-enter,
+.animate-if.ng-leave.ng-leave-active {
+  opacity:0;
+}
+
+.animate-if.ng-leave,
+.animate-if.ng-enter.ng-enter-active {
+  opacity:1;
+}
+
+.data-row-danger {
+    color: #9E9E9E;
+    background: #F5F5F5;
+}
+
+.data-row-blocked {
+    color: #9E9E9E;
+    background: #336699;
+}
+
+.reported {
+    opacity: 0.4;
+    border: 2px solid red;
+}
+
+.red-border {
+    border: 2px solid red;
+}
+
+div[ng-app] { margin: 10px; }
+.table {width: 100% }
+form[editable-form] > div {margin: 10px 0;}
+
+.poll-item {
+    border: 1px solid black;
+}
+
+.forum-starred {
+    color: #3F9FE0;
+}
+
+pre {
+    border: 0;
+    background: #FFFFFF;
+}
+
+/* Emoticons */
+.emoticon-icons {
+   margin: 0;
+   padding: 0;
+}
+
+.emoticon-icons li {
+   list-style: none;
+   margin-right: 3px;
+   margin-bottom: 5px;
+   text-indent: -9999px;
+   display: inline-block;
+}
+
+.emoticon-icons li a, a.emoticon-icon {
+   width: 32px;
+   height: 32px;
+   opacity: 0.9;
+   display: block;
+   background-position: 0 0;
+}
+
+.emoticon-icon-selected li a {
+  opacity: 1;
+  -webkit-backface-visibility: hidden; /*For Chrome*/
+}
+
+.emoticon-icons li:hover a {
+  opacity: 1;
+  -webkit-backface-visibility: hidden; /*For Chrome*/
+}
+
+.emoticon_angry_64 {background: url(../images/emoticons/angry_64.png) no-repeat;}
+.emoticon_angry_32 {background: url(../images/emoticons/angry_32.png) no-repeat;}
+.emoticon_angry_28 {background: url(../images/emoticons/angry_28.png) no-repeat;}
+.emoticon_confused_64 {background: url(../images/emoticons/confused_64.png) no-repeat;}
+.emoticon_confused_32 {background: url(../images/emoticons/confused_32.png) no-repeat;}
+.emoticon_confused_28 {background: url(../images/emoticons/confused_28.png) no-repeat;}
+.emoticon_evil_64 {background: url(../images/emoticons/evil_64.png) no-repeat;}
+.emoticon_evil_32 {background: url(../images/emoticons/evil_32.png) no-repeat;}
+.emoticon_evil_28 {background: url(../images/emoticons/evil_28.png) no-repeat;}
+.emoticon_goggles_64 {background: url(../images/emoticons/goggles_64.png) no-repeat;}
+.emoticon_goggles_32 {background: url(../images/emoticons/goggles_32.png) no-repeat;}
+.emoticon_goggles_28 {background: url(../images/emoticons/goggles_28.png) no-repeat;}
+.emoticon_love_64 {background: url(../images/emoticons/love_64.png) no-repeat;}
+.emoticon_love_32 {background: url(../images/emoticons/love_32.png) no-repeat;}
+.emoticon_love_28 {background: url(../images/emoticons/love_28.png) no-repeat;}
+.emoticon_lovely_64 {background: url(../images/emoticons/lovely_64.png) no-repeat;}
+.emoticon_lovely_32 {background: url(../images/emoticons/lovely_32.png) no-repeat;}
+.emoticon_lovely_28 {background: url(../images/emoticons/lovely_28.png) no-repeat;}
+.emoticon_laugh_64 {background: url(../images/emoticons/laugh_64.png) no-repeat;}
+.emoticon_laugh_32 {background: url(../images/emoticons/laugh_32.png) no-repeat;}
+.emoticon_laugh_28 {background: url(../images/emoticons/laugh_28.png) no-repeat;}
+.emoticon_tongue_64 {background: url(../images/emoticons/tongue_64.png) no-repeat;}
+.emoticon_tongue_32 {background: url(../images/emoticons/tongue_32.png) no-repeat;}
+.emoticon_tongue_28 {background: url(../images/emoticons/tongue_28.png) no-repeat;}
+.emoticon_wow_64 {background: url(../images/emoticons/wow_64.png) no-repeat;}
+.emoticon_wow_32 {background: url(../images/emoticons/wow_32.png) no-repeat;}
+.emoticon_wow_28 {background: url(../images/emoticons/wow_28.png) no-repeat;}
+
+
+.cropArea {
+  background: #E4E4E4;
+  overflow: hidden;
+  width:500px;
+  height:350px;
+}
+
+
+.ribbon-banner {
+   display: block;
+   position: absolute;
+   top: 50px;
+   left: -120px;
+   width: 400px;
+   height: 50px;
+   line-height: 50px;
+   text-align: center;
+   opacity: 0.7;
+   -webkit-transform: rotate(-45deg);
+   -moz-transform:    rotate(-45deg);
+   -ms-transform:     rotate(-45deg);
+   transform:         rotate(-45deg);
+   font-size: 24px;
+   font-weight: 700;
+   color: white;
+   background-color: red;
+   border: 1px solid white;
+   z-index: 500;
+   }
+
+.select-societies {
+  font-family: "Times New Roman", Times, serif;
+}
+
+.select-societies-others {
+  color: red;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.alert-box-fixed {
+  position: fixed;
+  top: 10px;
+}
+
+.alert-box-success-fixed {
+  background: #deeff5;
+  color: #3F9FE0;
+}
+
+.alert-box-danger-fixed {
+}
+
+
+.chunkify-2 {
+   columns: 2;
+}
+
+.chunkify-3 {
+   columns: 3;
+}
+
+.chunkify-4 {
+   columns: 4;
+}
+
+.custom .tab-v1 .nav-tabs { 
+  border: none;
+  background: none;
+  border: solid 2px #3F9FE0;
+}
+
+.tabs-border-right {
+    border-right: 2px solid #3F9FE0;
+}
+
+.font-size-16 {
+   font-size: 16px;
+}
+
+.font-size-18 {
+   font-size: 18px;
+}
+
+.font-size-20 {
+   font-size: 20px;
+}
+
+.font-size-40 {
+   font-size: 40px;
+}
+
+@media (min-width: 1200px) {
+    .container{
+        /*min-width: 100%;*/
+    }
+}
+
+/* Custom Tooltip */
+.changecolor + .tooltip > .tooltip-inner {
+    background-color: #fff; 
+    color: #000; 
+    border: 1px solid #CCCCCC; 
+}
+
+.changecolor + .tooltip.top > .tooltip-arrow{
+    bottom:0;
+    left:50%;
+    margin-left:-5px;
+    border-left:5px solid transparent;
+    border-right:5px solid transparent;
+    border-top:5px solid #CCC
+}
+.changecolor + .tooltip.left > .tooltip-arrow{
+    top:50%;
+    right:0;
+    margin-top:-5px;
+    border-top:5px solid transparent;
+    border-bottom:5px solid transparent;
+    border-left:5px solid #CCC;
+}
+.changecolor + .tooltip.bottom > .tooltip-arrow{
+    top:0;
+    left:50%;
+    margin-left:-5px;
+    border-left:5px solid transparent;
+    border-right:5px solid transparent;
+    border-bottom:5px solid #CCC;
+}
+.changecolor + .tooltip.right > .tooltip-arrow{
+    top:50%;
+    left:0;
+    margin-top:-5px;
+    border-top:5px solid transparent;
+    border-bottom:5px solid transparent;
+    border-right:5px solid #CCC;
+}

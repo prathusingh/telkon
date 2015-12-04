@@ -1,0 +1,305 @@
+<!--SIDENAV HOME - CLASSIFIEDS-->
+<div class="profile-edit tab-pane fade in active" ng-controller="ClassifiedsCtrl">
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <!-- Single button -->
+            <div class="btn-group">
+                    
+                <button type="button" class="btn btn-default dropdown-toggle data-menu" data-toggle="dropdown" aria-expanded="false" ng-model="selectedOption">
+                    {{selectedOption}}  <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu" role="menu">
+                        
+                    <li ng-repeat="option in viewOptions" ng-click="changeShowOption(option)" >
+                        <a href="javascript:void(0)">
+                            {{option}}
+                            <span ng-class="{'glyphicon glyphicon-ok pull-right' : option === selectedOption}"></span>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <button class="btn btn-default tooltips margin-left-5 data-menu" type="button" data-toggle="tooltip" data-placement="bottom" title data-original-title="Click to Refresh" ng-click="refreshClassifieds()">
+                <span class="glyphicon glyphicon-repeat"></span>
+            </button>
+
+            <button type="button" class="btn btn-success pull-right margin-bottom-20 rounded" data-toggle="modal" data-target="#new-classified" ng-click="clearForm(); getClassifiedTypes()">
+                Post Advertisement
+            </button>
+
+        </div>
+
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search by Category/Title" ng-model="searchText">
+                <span class="input-group-btn">
+                    <button type="button" class="btn-u" ng-click="searchClassifieds()">Go</button>
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="panel margin-bottom-40">
+
+        <div ng-if="!pageLoading" class=" margin-bottom-20">
+            
+            <div class="row profile-body margin-bottom-20" infinite-scroll='loadMore()' infinite-scroll-disabled='isLoadingMore' infinite-scroll-distance='1'>
+
+                <div ng-repeat="item in classifieds | selectedOptionFilterClassifieds:this">
+
+                    <div class="row margin-bottom-20" ng-if="$even">
+                        <div class="col-sm-6" ng-class="{'new-data': classifieds[$index].new}">
+
+                            <div class="profile-blog hover-box" data-toggle="modal" data-target="#show_classified" ng-click="clickClassified(classifieds[$index].cid)">
+                                <img class="rounded-x" src="{{ classifieds[$index].byimagedp || 'images/default_profile_photo.png' }}" alt="">
+                                <div class="name-location">
+                                    <small class="pull-right">{{classifieds[$index].createdat}}</small>
+                                    <strong>{{classifieds[$index].byname || 'No Name'}}</strong>
+                                    <span><i class="glyphicon glyphicon-home"></i> {{classifieds[$index].bysocietyname || 'No Society'}}, {{classifieds[$index].bycity || 'No City'}}</span>
+                                </div>
+                                <div class="clearfix margin-bottom-10 text-center color-blue"><strong>{{classifieds[$index].title}}</strong></div>
+                                <div class="clearfix margin-bottom-20 text-center">{{classifieds[$index].category}}</div>
+                                <hr>
+                                <ul class="list-inline share-list">
+                                    <li><i class="glyphicon glyphicon-envelope"></i> {{classifieds[$index].byemail}}</li>
+                                    <li><i class="glyphicon glyphicon-phone"></i> {{classifieds[$index].byphone || 'No Phone'}}</li>
+                                </ul>
+                                <span ng-if="classifiedsRead.indexOf(classifieds[$index].cid) != -1" class="glyphicon glyphicon-ok pull-right"></span>
+                            </div>
+
+                        </div>
+
+                        <div  class="col-sm-6" ng-class="{'new-data': classifieds[$index + 1].new}">
+
+                            <div ng-if="classifieds[$index + 1]" class="profile-blog hover-border hover-link hover-item" data-toggle="modal" data-target="#show_classified" ng-click="clickClassified(classifieds[$index + 1].cid)">
+                                <img class="rounded-x" src="{{ classifieds[$index + 1].byimagedp || 'images/default_profile_photo.png' }}" alt="">
+                                <div class="name-location">
+                                    <small class="pull-right">{{classifieds[$index + 1].createdat}}</small>
+                                    <strong>{{classifieds[$index + 1].byname || 'No Name'}}</strong>
+                                    <span><i class="glyphicon glyphicon-home"></i> {{classifieds[$index + 1].bysocietyname || 'No Society'}}, {{classifieds[$index + 1].bycity || 'No City'}}</span>
+                                </div>
+                                <div class="clearfix margin-bottom-10 text-center color-blue"><strong>{{classifieds[$index + 1].title}}</strong></div>
+                                <div class="clearfix margin-bottom-20 text-center">{{classifieds[$index + 1].category}}</div>
+                                <hr>
+                                <ul class="list-inline share-list">
+                                    <li><i class="glyphicon glyphicon-envelope"></i> {{classifieds[$index + 1].byemail}}</li>
+                                    <li><i class="glyphicon glyphicon-phone"></i> {{classifieds[$index + 1].byphone || 'No Phone'}}</li>
+                                </ul>
+                                <span ng-if="classifiedsRead.indexOf(classifieds[$index + 1].cid) != -1" class="glyphicon glyphicon-ok pull-right"></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div ng-if="classifieds.length <= 0 && !pageLoading" class="row">
+            <div class="col-md-8 col-md-offset-2 text-center heading">
+                <h3>No Classifieds</h3>
+            </div>
+        </div>
+
+        <!-- Load More Bar -->
+        <div ng-if="!pageLoading && isLoadingMore && !isLoadCompleted" class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                        <span class="sr-only">100% Complete</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End - Load More Bar -->
+
+    </div>
+
+    <!-- Progress Bar -->
+    <div ng-if="pageLoading" class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="progress">
+                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    <span class="sr-only">100% Complete</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End - Progress Bar -->
+
+    <!--SIDENAV HOME - CLASSIFIEDS - ADD-->
+    <div id="new-classified" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledbody="myModalLabel" aria-hidden="true" style="display: none;">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-no-border">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+            
+                <div class="modal-body">
+
+                    <form action="" class="sky-form">
+                        <header><strong class="main-heading">Post an Advertisement</strong></header>
+
+                        <fieldset>
+
+                            <section>
+
+                                <div ng-class="{'color-green': errorCode == 0, 'text-center': true}" ng-if="addMessage && errorCode == 0">
+                                    <img id="logo-header" src="images/suc_32.png" alt="Suc"> {{addMessage}}
+                                </div>
+                                <div ng-class="{'color-red': errorCode != 0, 'text-center': true}" ng-if="addMessage && errorCode != 0">
+                                    <img id="logo-header" src="images/error_32.png" alt="Error"> {{addMessage}}
+                                </div>
+
+                                <div class="text-center" ng-if="dataLoading">
+                                    <img src="images/page_load.gif">
+                                </div>
+                                
+                                <label class="label">Category</label>
+                                <img ng-if="classifiedTypesLoading" class="pull-right" src="images/page_load.gif">
+                                <label ng-class="{'select': true, 'state-error': errorCode == 1}">
+                                    <select ng-model="categorySelected" required>
+                                        <option value="" disabled>
+                                            select
+                                        </option>
+                                        <option ng-repeat="category in classifiedTypes" value="{{category}}">
+                                            {{category}}
+                                        </option>
+                                    </select>
+                                </label>
+                            </section>
+
+                            <section>
+                                <label class="label">Title</label>
+                                <label ng-class="{'input': true, 'state-error': errorCode == 2}">
+                                    <input type="text" placeholder="Eg. HONDA City - 2009 Model : Sale" ng-model="title" required>
+                                </label>
+                            </section>
+
+                            <section>
+                                <label class="label">Details</label>
+                                <label ng-class="{'textarea': true, 'state-error': errorCode == 3}">
+                                    <textarea rows="8" ng-model="details" placeholder="Enter the details" required></textarea>
+                                </label>
+                            </section>
+
+                        </fieldset>
+                    </form>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" ng-click="postClassified()">Post</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Sidenav Home - Classifieds - Add -->
+
+    <!--SIDENAV HOME - CLASSIFIEDS - SHOW-->
+    <div id="show_classified" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledbody="classifiedShowModal" aria-hidden="true">
+
+        <div ng-if="dataShowErr == -1" class="modal-dialog modal-md">
+            <div class="modal-content">
+
+                <!-- Progress Bar -->
+                <div ng-if="dataLoading" class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                <span class="sr-only">100% Complete</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End- Progress Bar -->
+
+                <div ng-if="!dataLoading" class="modal-header text-center color-red">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    ERROR: {{dataShowMsg}} <br>
+                    <img id="logo-header" src="images/error_64.png" alt="Error">
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="dataShowErr != -1" class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button ng-if="!dataLoading" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    
+                    <button ng-if="savedClassifieds.indexOf(classifiedShow.cid) == -1 && !dataLoading" type="button" class="btn btn-xs btn-primary" ng-click="saveClassified()" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-floppy-disk"> SAVE</span>
+                    </button>
+
+                    <button ng-if="savedClassifieds.indexOf(classifiedShow.cid) != -1 && !dataLoading" type="button" class="btn btn-xs btn-danger" ng-click="unsaveClassified()" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-trash"> REMOVE</span>
+                    </button>
+
+                    <!-- Progress Bar -->
+                    <div ng-if="dataLoading" class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                    <span class="sr-only">100% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End - Progress Bar -->
+
+                    <div ng-if="!dataLoading && classifiedShowMsg" class="text-center">
+                        <span class="label label-red text-center ">
+                            {{classifiedShowMsg}}
+                        </span>
+                    </div>
+                                                    
+                    <h1 ng-if="!dataLoading" class="modal-title text-center color-blue">{{classifiedShow.title}}</h1>
+                    <h5 ng-if="!dataLoading" class="modal-title text-center">Category: {{classifiedShow.category}}</h5>
+                </div>
+
+                <div ng-if="!dataLoading" class="modal-body">
+
+                    <p class="pull-right">{{classifiedShow.createdat}}</p>
+                    <br/><br/>
+
+                    <pre>{{classifiedShow.details}}</pre>
+                                                
+                    <br/>
+
+                    <h5 class="color-blue">Posted by</h5>
+
+                    <img ng-if="classifiedShow.byimagedp" class="rounded-x" width=50px src="{{ classifiedShow.byimagedp }}" alt="">
+                    <img ng-if="!classifiedShow.byimagedp" class="rounded-x" width=50px src="images/default_profile_photo.png" alt="">
+                    <strong> {{classifiedShow.byname || 'No Name'}}</strong>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h6><i class="icon-custom icon-sm rounded-x icon-bg-blue icon-line icon-call-out"></i> {{classifiedShow.byphone || 'No Phone'}}</h6>
+                        </div>
+                        <div class="col-sm-4">
+                            <h6><i class="icon-custom icon-sm rounded-x icon-bg-blue icon-line icon-screen-desktop"></i> {{classifiedShow.byemail}}</h6>
+                        </div>
+                        <div class="col-sm-4">
+                            <h6><i class="icon-custom icon-sm rounded-x icon-bg-blue glyphicon glyphicon-home"></i> {{classifiedShow.bysocietyname || 'No Society'}}, {{classifiedShow.bycity || 'No City'}}</h6>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Sidenav Home - Classifieds - Show-->
+
+</div>
+<!--End Sidenav Home - Classifieds-->

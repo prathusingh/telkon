@@ -1,0 +1,68 @@
+<!--=== Details Part ===-->
+<div class="container content" ng-controller="ProfileSetupCtrl">
+    <div class="row">
+            
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+            <button class="btn btn-warning rounded-2x pull-right" type="submit" ng-click="skipProfile()">
+                    Skip - Add Later
+                </button>
+        </div>
+    </div>
+
+    <br/>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+
+            <form class="sky-form" name="detailsform">
+                    
+                <div class="reg-header">
+                    <h2>
+                        Complete the Profile<br/>
+                    </h2>
+                    <span ng-if="message" class="label label-danger text-center">{{message}}</span>
+                </div>
+
+               
+
+                <fieldset>
+
+                    <section>
+                        <label>Name</label>
+                        <label class="input">
+
+                            <input type="text" ng-model="city" placeholder="Eg- Raj Sharma" disabled>
+
+                        </label>
+                    </section>
+
+                    <section>
+                        <label>Phone</label>
+                        <label class="input">
+
+                            <input type="text" ng-model="city" placeholder="Enter 10-digit mobile number" disabled>
+
+                        </label>
+                    </section>
+
+                </fieldset>
+                   
+                <hr>
+
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <button class="btn btn-block btn-primary pull-right" type="submit" ng-click="submitDetails()">
+                            ENTER
+                        </button>
+                    </div>
+                </div>
+
+                <br/>
+
+            </form>
+
+        </div>
+
+    </div>
+    <!--/row-->     
+</div>
+<!--=== End Details Part ===-->

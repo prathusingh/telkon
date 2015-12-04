@@ -1,0 +1,32 @@
+<!--Rules -->
+<div class="profile-edit tab-pane" ng-controller="RulesCtrl">
+    <h2 class="heading-md text-center">
+        
+        Society Rules &amp Regulations<br/><br/>
+        
+        <span class="label label-danger text-center">{{message}}</span>
+    </h2>
+
+    </br>
+
+    <div class="panel-body no-padding" data-mcs-theme="minimal-dark">
+
+        <div class="row profile-event">
+            <div class="col-sm-12">
+                     
+				<dd>
+					<pre class="text-left" href="javascript:void(0)" editable-textarea="societyrules" onbeforesave="updateRules($data)" e-rows="20" e-cols="80">
+						{{ '\n' + societyrules || 'Admin is preparing - Rules & Regulations' }} <span class="glyphicon glyphicon-pencil pull-right"></span>
+					</pre>
+				</dd>
+
+            </div>
+        </div>
+
+        <hr>
+
+    </div>    
+    <!-- End Table-->
+
+</div>
+<!--End Rules -->

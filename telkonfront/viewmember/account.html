@@ -1,0 +1,33 @@
+<!--ACCOUNT -->
+<div class="profile-edit tab-pane" ng-controller="AccountCtrl">
+    <h2 class="heading-md text-center">
+        Manage your account<br/><br/>
+        <span class="label label-danger text-center">{{message}}</span>
+    </h2>
+
+    </br>
+
+    <div class="panel margin-bottom-20">
+        <div class="panel-body">                                                      
+            <form class="margin-bottom-10" role="form">
+                <div class="form-group">
+                    <h3>I want to remove myself as a MEMBER of this society</h3>
+                    <button type="submit" class="btn btn-warning pull-right" ng-click="suspendAccount()">REMOVE</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="panel margin-bottom-20">
+        <div class="panel-body">                                                      
+            <form class="margin-bottom-10" role="form">
+                <div class="form-group">
+                    <h3>I want to delete the Telkon account</h3>
+                    <button type="submit" class="btn btn-danger pull-right" ng-click="deleteAccount()">DELETE</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+<!--End Account -->

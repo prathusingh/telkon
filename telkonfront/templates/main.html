@@ -1,0 +1,112 @@
+<!--=== Start ===-->
+<div class="container content">     
+    <div class="row">
+
+        <div class="col-md-8">
+
+            <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1" ng-controller="RegisterCtrl">
+
+                <form class="reg-page" name="registerform">
+                    
+                    <div class="reg-header">
+                        <h2 class="color-blue">New Member Registration</h2>
+
+                        <h2 class="text-center">
+                            <img ng-if="isLoading" src="images/page_load.gif">
+                            <span ng-if="message && !isLoading" class="label label-danger text-center">{{message}}</span>
+                        </h2>
+
+                    </div>
+
+                    <label>Email <span class="color-red">*</span></label>
+                    <input type="email" class="form-control margin-bottom-20" ng-model="email">
+
+                    <label>Password <span class="color-red">*</span></label>
+                    <input type="password" class="form-control margin-bottom-20" ng-model="password">
+
+                    <label>Confirm Password <span class="color-red">*</span></label>
+                    <input type="password" class="form-control margin-bottom-20" ng-model="rpassword">
+                    <input type="checkbox" ng-model="agree"> I agree
+                    <label>
+                        <a href="#/terms" class="color-green" target="_blank">Terms and Conditions</a>
+                    </label>
+
+                    <div class="row">
+                        <div class="col-lg-8 checkbox">
+                        </div>
+                        <div class="col-lg-4 text-right">
+                            <button class="btn btn-success" type="submit" ng-click="submitRegister()" ng-disabled="!agree">Register</button>
+                        </div>
+                    </div>
+
+                    <hr class="devider devider-dotted">
+
+                    <div class="row margin-top-20 margin-bottom-40">
+                        <div class="col-sm-12 col-md-12">
+                            <button class="btn btn-block btn-googleplus-inversed rounded" ng-click="logInWithGoogle()">
+                                <i class="fa fa-google-plus"></i> Register with Google+
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+
+            
+
+            <div class="" ng-controller="LoginCtrl">
+
+                <form class="reg-page" name="loginform">
+                    <div class="reg-header">            
+                        <h2 class="color-blue">Account Login</h2>
+                        <h2>
+                            <img ng-if="isLoading" src="images/page_load.gif">
+                            <span class="label label-danger">{{message}}</span>
+                        </h2>
+                            
+                    </div>
+
+                    <div class="input-group margin-bottom-20">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input type="email" placeholder="Email" class="form-control" ng-model="email">
+                    </div>
+                    <div class="input-group margin-bottom-20">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input type="password" placeholder="Password" class="form-control" ng-model="password">
+                    </div>                    
+
+                    <div class="row">
+                        <div class="col-md-6 checkbox">
+                            <label><input type="checkbox"> Stay signed in</label>                        
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-success pull-right" type="submit" ng-click="loginSubmit()">Login</button>
+                        </div>
+                    </div>
+
+                    <hr class="devider devider-dotted">
+
+                    <div class="row margin-bottom-40">
+                        <div class="col-sm-12 col-md-12">
+                            <button class="btn btn-block btn-googleplus-inversed rounded" ng-click="logInWithGoogle()">
+                                <i class="fa fa-google-plus"></i> Log in Google+
+                            </button>
+                        </div>
+                    </div>
+                    <hr class="devider devider-dotted">
+                    <h4>Forget your Password ?</h4>
+                    <p><a class="color-green" href="#/forgetpassword">Click here</a> to reset your password.</p>
+                </form>
+            </div>
+
+
+        </div>
+
+    </div><!--/row-->
+</div><!--/container--> 
+<!--=== End ===-->

@@ -1,0 +1,59 @@
+<!--=== Details Part ===-->
+<div class="container content" ng-controller="PersonalCtrl">
+    <div class="row">
+        
+        <!--  
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+            <button class="btn btn-warning rounded-2x pull-right" type="submit" ng-click="skip()">
+                SKIP
+            </button>
+        </div>
+        -->
+    </div>
+
+    <br/>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+
+            <form class="reg-page" name="detailsform">
+                    
+                <div class="reg-header">
+                    <h2 class="color-blue">
+                        Profile<br/>
+                    </h2>
+                    <img ng-if="isLoading" src="images/page_load.gif">
+                    
+                    <div ng-if="message && !isLoading" class="text-center">
+                        <p class="color-red ">
+                            <img src="images/error_32.png" alt="Error"> {{message}}
+                        </p>
+                    </div>
+                        
+                </div>
+
+                <label>Name<span class="color-red" ng-class="{'input': true, 'state-error': errorCode == 1}">*</span></label>
+                <input type="text" class="form-control margin-bottom-20" ng-model="name" placeholder="Full name">
+
+                <label>Phone<span class="color-red" ng-class="{'input': true, 'state-error': errorCode == 2}">*</span></label>
+                <input type="text" class="form-control margin-bottom-20" ng-model="phone" placeholder="10-digit mobile number">
+
+                <hr>
+
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <button class="btn btn-block btn-primary pull-right" type="submit" ng-click="postPersonal()">
+                            ENTER
+                        </button>
+                    </div>
+                </div>
+
+                <br/>
+
+            </form>
+
+        </div>
+
+    </div>
+    <!--/row-->     
+</div>
+<!--=== End Details Part ===-->

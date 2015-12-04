@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en" ng-app="publicApp"> <!--<![endif]-->  
+<head>
+    <title>Telkon</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/one.style.css">
+
+    <!-- CSS Footer -->
+    <link rel="stylesheet" href="assets/css/footers/footer-v7.css">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="assets/plugins/animate.css">    
+    <link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">    
+    <link rel="stylesheet" href="assets/plugins/pace/pace-flash.css">
+    <link rel="stylesheet" href="assets/plugins/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="assets/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css">
+    <link rel="stylesheet" href="assets/plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css">
+    <link rel="stylesheet" href="assets/plugins/revolution-slider/rs-plugin/css/settings.css" type="text/css" media="screen">
+    <!--[if lt IE 9]><link rel="stylesheet" href="assets/plugins/revolution-slider/rs-plugin/css/settings-ie8.css" type="text/css" media="screen"><![endif]-->
+    
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+
+<!-- 
+The #page-top ID is part of the scrolling feature.
+The data-spy and data-target are part of the built-in Bootstrap scrollspy function.
+-->
+<body id="body" data-spy="scroll" data-target=".one-page-header" class="demo-lightbox-gallery">
+    <!--=== Header ===-->    
+    <nav class="one-page-header navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="menu-container page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+                <a class="navbar-brand" href="#intro">
+                   <img id="logo-header" src="images/logo_94x32.png" alt="Logo">
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <div class="menu-container">
+                    <ul class="nav navbar-nav">
+                        <li class="page-scroll home">
+                            <a href="#body">Home</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="#about">About</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="#motivation">Motivation</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="#features">Features</a>
+                        </li>
+                        <!--
+                        <li class="page-scroll">
+                            <a href="#portfolio">Portfolio</a>
+                        </li>
+                        --> 
+                        <li class="page-scroll">
+                            <a href="#contact">Contact</a>
+                        </li>
+                        <li>
+                            <a id="applink" href="/app#/">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!--=== End Header ===-->    
+
+    <!-- Intro Section -->
+     <section id="intro" class="intro-section">
+        <div class="fullscreenbanner-container">
+            <div class="fullscreenbanner">
+                <ul>
+                    <!-- SLIDE 1 -->
+                    <li data-transition="curtain-1" data-slotamount="5" data-masterspeed="700" data-title="Slide 1">
+                        <!-- MAIN IMAGE -->
+                        <img src="assets/img/sliders/revolution/bg1.jpg" alt="slidebg1" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+
+                        <!-- LAYERS -->
+                        <div class="tp-caption rs-caption-1 sft start"
+                            data-x="center"
+                            data-hoffset="0"
+                            data-y="100"
+                            data-speed="800"
+                            data-start="2000"
+                            data-easing="Back.easeInOut"
+                            data-endspeed="300">
+                            TRYING TO MAKE WORLD A BETTER PLACE
+                        </div>
+
+                        <!-- LAYER -->
+                        <div class="tp-caption rs-caption-2 sft"
+                            data-x="center"
+                            data-hoffset="0"
+                            data-y="200"
+                            data-speed="1000"
+                            data-start="3000"
+                            data-easing="Power4.easeOut"
+                            data-endspeed="300"
+                            data-endeasing="Power1.easeIn"
+                            data-captionhidden="off"
+                            style="z-index: 6">
+                            Networking is important to get our work done. We are your Network. <br>
+                            We use the latest technologies to bring people closer.
+                        </div>
+
+                        <!-- LAYER -->
+                        <div class="tp-caption rs-caption-3 sft"
+                            data-x="center"
+                            data-hoffset="0"
+                            data-y="360"
+                            data-speed="800"
+                            data-start="3500"
+                            data-easing="Power4.easeOut"
+                            data-endspeed="300"
+                            data-endeasing="Power1.easeIn"
+                            data-captionhidden="off"
+                            style="z-index: 6">
+                            <span class="page-scroll"><a href="#about" class="btn-u btn-brd btn-brd-hover btn-u-light">Learn More</a></span>
+                            <span class="page-scroll"><a href="#features" class="btn-u btn-brd btn-brd-hover btn-u-light">Our Work</a></span>
+                        </div>
+                    </li>
+
+                    <!-- SLIDE 2 -->
+                    <li data-transition="slideup" data-slotamount="5" data-masterspeed="1000" data-title="Slide 2">
+                        <!-- MAIN IMAGE -->
+                        <img src="assets/img/sliders/revolution/bg2.jpg" alt="slidebg1"  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+
+                        <!-- LAYERS -->
+                        <div class="tp-caption rs-caption-1 sft start"
+                            data-x="center"
+                            data-hoffset="0"
+                            data-y="100"
+                            data-speed="800"
+                            data-start="1500"
+                            data-easing="Back.easeInOut"
+                            data-endspeed="300">
+                            COMMITTED TO CUSTOMER SATISFACTION
+                        </div>
+
+                        <!-- LAYER -->
+                        <div class="tp-caption rs-caption-2 sft"
+                            data-x="center"
+                            data-hoffset="0"
+                            data-y="200"
+                            data-speed="1000"
+                            data-start="2500"
+                            data-easing="Power4.easeOut"
+                            data-endspeed="300"
+                            data-endeasing="Power1.easeIn"
+                            data-captionhidden="off"
+                            style="z-index: 6">
+                            Technology is the need to future. We understand future and our customers<br> 
+                            We have experience in handling clients and their everchanging needs
+                        </div>
+
+                        <!-- LAYER -->
+                        <div class="tp-caption rs-caption-3 sft"
+                            data-x="center"
+                            data-hoffset="0"
+                            data-y="360"
+                            data-speed="800"
+                            data-start="3500"
+                            data-easing="Power4.easeOut"
+                            data-endspeed="300"
+                            data-endeasing="Power1.easeIn"
+                            data-captionhidden="off"
+                            style="z-index: 6">
+                            <span class="page-scroll"><a href="#about" class="btn-u btn-brd btn-brd-hover btn-u-light">Learn More</a></span>
+                            <span class="page-scroll"><a href="#features" class="btn-u btn-brd btn-brd-hover btn-u-light">Our Work</a></span>
+                        </div>
+                    </li>
+
+                    <!-- SLIDE 3 -->
+                    <li data-transition="slideup" data-slotamount="5" data-masterspeed="700"  data-title="Slide 3">
+                        <!-- MAIN IMAGE -->
+                        <img src="assets/img/sliders/revolution/bg3.jpg"  alt="slidebg1"  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+
+                        <!-- LAYERS -->
+                        <div class="tp-caption rs-caption-1 sft start"
+                            data-x="center"
+                            data-hoffset="0"
+                            data-y="110"
+                            data-speed="800"
+                            data-start="1500"
+                            data-easing="Back.easeInOut"
+                            data-endspeed="300">
+                            WE DO THINGS DIFFERENTLY
+                        </div>
+
+                        <!-- LAYER -->
+                        <div class="tp-caption rs-caption-2 sfb"
+                            data-x="center"
+                            data-hoffset="0"
+                            data-y="210"
+                            data-speed="800"
+                            data-start="2500"
+                            data-easing="Power4.easeOut"
+                            data-endspeed="300"
+                            data-endeasing="Power1.easeIn"
+                            data-captionhidden="off"
+                            style="z-index: 6">
+                            Creative freedom matters user experience.<br>
+                            We minimize the gap between technology and its audience.
+                        </div>
+
+                        <!-- LAYER -->
+                        <div class="tp-caption rs-caption-3 sfb"
+                            data-x="center"
+                            data-hoffset="0"
+                            data-y="370"
+                            data-speed="800"
+                            data-start="3500"
+                            data-easing="Power4.easeOut"
+                            data-endspeed="300"
+                            data-endeasing="Power1.easeIn"
+                            data-captionhidden="off"
+                            style="z-index: 6">
+                            <span class="page-scroll"><a href="#about" class="btn-u btn-brd btn-brd-hover btn-u-light">Learn More</a></span>
+                            <span class="page-scroll"><a href="#features" class="btn-u btn-brd btn-brd-hover btn-u-light">Our Work</a></span>
+                        </div>
+                    </li>                    
+                </ul>
+                <div class="tp-bannertimer tp-bottom"></div>
+                <div class="tp-dottedoverlay twoxtwo"></div>
+            </div>
+        </div>
+    </section>
+    <!-- End Intro Section -->
+
+
+    <!--  About Section -->
+    <section id="about" class="about-section section-first">
+        <div class="block-v1">
+            <div class="container">
+                <div class="row content-boxes-v3">
+
+                    <div class="col-md-4 md-margin-bottom-30">
+                        <i class="icon-custom rounded-x icon-bg-green icon-line icon-users"></i>
+                        <div class="content-boxes-in-v3">
+                            <h2 class="heading-sm color-blue">About Telkon</h2>
+                            <p>
+                                Telkon is free web platform that aims at connecting people seamlessly. We are beginning with the residential societies - <strong>Club/RWA</strong> &amp <strong>Residents</strong>.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 md-margin-bottom-30">
+                        <i class="icon-custom rounded-x icon-bg-red icon-line icon-screen-tablet"></i>
+                        <div class="content-boxes-in-v3">
+                            <h2 class="heading-sm color-blue">Stay Connected</h2>
+                            <p>
+                                With Telkon, you can stay connected with the people of your society and other societies as well in a number of ways.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 md-margin-bottom-30">
+                        <i class="icon-custom rounded-x icon-bg-dark-blue icon-line icon-badge"></i>
+                        <div class="content-boxes-in-v3">
+                            <h2 class="heading-sm color-blue">Highly Skilled Team</h2>
+                            <p>
+                                Telkon is comprised of graduates from top tier institute - <strong>BITS Pilani</strong> - who have worked in Fortune 10 companies of the world.
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>                
+            </div>
+        </div>
+
+        <div class="about-image bg-grey">
+            <div class="container">
+                <div class="title-v1">
+                    <h1>We connect poeple</h1>
+                    <p>We, at <strong class="color-blue">Telkon</strong>, are working continuously to bring people closer. <br> 
+                    Your needs are our priority. That's why we focus on bridging the gap between the <strong class="color-blue">Club/RWA</strong> and <strong class="color-blue">Residents</strong> of a society.</p>
+                </div>
+                <div class="img-center">
+                    <img class="img-responsive" src="assets/img/bg/bg1.jpg" alt="">
+                </div>
+            </div>
+        </div>        
+
+        <div class="container content-lg">
+            <div class="title-v1">
+                <h2>Our Vision And Mission</h2>
+                <p>To centralize societal needs tracking/queries disposal platform. <br> 
+                To provide a unique, easy to use, hassle free platform for residents to answer all their queries/needs</p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 content-boxes-v3 margin-bottom-40">
+                    <div class="clearfix margin-bottom-30">
+                        <i class="icon-custom icon-md rounded-x icon-bg-u icon-line icon-trophy"></i>
+                        <div class="content-boxes-in-v3">
+                            <h2 class="heading-sm">Better Connectivity</h2>
+                            <p>We aim at providing a <strong>purposeful</strong>, highly sophisticated, well-designed and user-friendly platform to societies for <strong>communication</strong> like never before</p>
+                        </div>
+                    </div>
+                    <div class="clearfix margin-bottom-30">
+                        <i class="icon-custom icon-md rounded-x icon-bg-u icon-line icon-directions"></i>
+                        <div class="content-boxes-in-v3">
+                            <h2 class="heading-sm">Best Solutions &amp; Approaches</h2>
+                            <p>We have a special team dedicated for <strong>R &amp D</strong> so that we can provide <strong>best solution</strong> to our customers following the <strong>best approach</strong> possible.</p>
+                        </div>
+                    </div>
+                    <div class="clearfix margin-bottom-30">
+                        <i class="icon-custom icon-md rounded-x icon-bg-u icon-line icon-diamond"></i>
+                        <div class="content-boxes-in-v3">
+                            <h2 class="heading-sm">Quality Service &amp; Support</h2>
+                            <p>We believe in <strong>customer satisfaction</strong>. We provide <strong>world class quality</strong> and are dedicated to serve our clients 24x7</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <img class="img-responsive" src="assets/img/bg/bg2.jpg" alt="">
+                </div>
+            </div>
+        </div>        
+
+        <div class="parallax-quote parallaxBg">
+            <div class="container">
+                <div class="parallax-quote-in">
+                    <p>
+                        We believe in making world a better place with the help of <span class="color-blue">internet</span> and <span class="color-blue">technology</span>
+                    </p> <br>
+                    <small class="pull-right">- <strong>TEAM TELKON</strong></small>
+                </div>
+            </div>
+        </div>        
+    </section>
+    <!--  About Section -->
+
+
+    <!-- Motivation Section -->
+    <section id="motivation" class="news-section">
+        <div class="container content-lg">
+            <div class="title-v1">
+                <h2>Motivation</h2>
+                <p>
+                    Telkon came into existence because of several reasons. Have a look at some of those. <br>
+                </p>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-8">
+
+                    <div class="row">
+
+                        <div class="col-md-6 md-margin-bottom-40">
+                            <div class="news-v1-in">
+                                <img class="img-responsive" src="assets/img/masonry/blog5.jpg" alt="">
+                                <h3 class="color-blue">Improper use of Social Networking</h3>
+                                <p>
+                                    Today, in the presence of several social networking platforms and tools, we feel connected to eveyone.But we do not know the person living next door. It is really something to worry about and needs an initiative.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 md-margin-bottom-40">
+                            <div class="news-v1-in">
+                                <img class="img-responsive" src="assets/img/masonry/blog4.jpg" alt="">
+                                <h3 class="color-blue">Absence of Group Management Tool</a></h3>
+                                <p>
+                                    Although, many applications provide group management feature but, they fail to manage it in a user-friendly and efficient manner because groups and clubs were not among their core features.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div> 
+                    <br> <br>
+
+                    <div class="row">
+
+                        <div class="col-md-6 md-margin-bottom-40">
+                            <div class="news-v1-in">
+                                <img class="img-responsive" src="assets/img/breadcrumbs/img3.jpg" alt="">
+                                <h3 class="color-blue">No Online Complaint Management</a></h3>
+                                <p>
+                                    Maintaining complaints in registers is becoming obsolete. With everyhting going online, there is a need to maintain the residents' complaints online.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 md-margin-bottom-40">
+                            <div class="news-v1-in">
+                                <img class="img-responsive" src="assets/img/breadcrumbs/img2.jpg" alt="">
+                                <h3 class="color-blue">Less interaction at Living Place</a></h3>
+                                <p>
+                                    Due to our busy schedule, we have almost ignored our life at living place. Studies show that interaction at living place offers mental strength, peace and relief.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br> <br>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="col-md-12">
+                        <div class="news-v1-in">
+                            <img class="img-responsive" src="assets/img/mockup/hand-black-iphone-l.png" alt="">
+                            <h3 class="color-blue">Difficulty in finding Service Providers</a></h3>
+                            <p>
+                                Its really annoying when you could not find contact number of service provider like electrician, plumber etc, nearby your residence, when you really need it. There is a need of a proper management of important contacts that can accessed at any time, easily.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6 md-margin-bottom-40">
+                    <div class="news-v1-in">
+                        <img class="img-responsive" src="assets/img/mockup/1.png" alt="">
+                        <h3 class="color-blue">Need for Intelligent Advertising</a></h3>
+                        <p>
+                            The audience of an advertisement determines its success rate. For eg, it does not make sense to advertise for selling a car in 'cannot afford car'  or 'do not need a car' community.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="news-v1-in">
+                        <img class="img-responsive" src="assets/img/sliders/3.jpg" alt="">
+                        <h3 class="color-blue">Huge paper loss - Go Green</a></h3>
+                        <p>
+                            With notices, advertisements etc, within the society premises, using paper, we are not only disobeying Green Revolution, also we are not reaching to each and every person it is meant for. There is a very simple solution that solves both the purposes. <br>
+                            We can really contribute to the society by going online - Notices and Classifieds. This way, we can save a lot of paper. If we calculate the savings for one year, we will realize the advantage of taking such a step. So, lets be a part of it.
+                        </p>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+       
+       <!--
+        <div class="parallax-twitter parallaxBg">
+            <div class="container parallax-twitter-in">
+                <div class="margin-bottom-30">
+                    <i class="icon-custom rounded-x icon-bg-blue fa fa-twitter"></i>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <ul class="list-unstyled owl-twitter-v1">
+                            <li class="item">
+                                <p>Unify has reached 10000 plus sales and we just want to thank you to our all customers for being part of the Unify Template success <a href="http://bit.ly/1c0UN3Y">http://bit.ly/1c0UN3Y</a><p>
+                                <span>3 min ago via <a href="https://twitter.com/htmlstream">@htmlstream</a></span>
+                            </li>
+                            <li class="item">
+                                <p><a href="#">@htmlstream</a> jQuery lightGallery - Lightweight jQuery lightbox gallery for displaying image and video gallery <a href="#">http://sachinchoolur.github.io/lightGallery</a> <a href="#">#javascript</a></p>
+                                <span>10 min ago Retweeted by <a href="https://twitter.com/htmlstream">@twbootstrap</a></span>
+                            </li>
+                            <li class="item">
+                                <p>New 100% Free Stock Photos. Every. Single. Day. Everything you need for your creative projects. <a href="#">http://publicdomainarchive.com</a></p>
+                                <span>30 min ago via <a href="https://twitter.com/htmlstream">@wrapbootstrap</a></span>
+                            </li>
+                        </ul>                    
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
+    </section>
+    <!-- End Motivation Section -->
+
+
+    <!-- Features Section -->
+    <section id="features">
+
+        <div class="container content-lg">
+            <div class="title-v1">
+                <h2>Features</h2>
+                <p>We do <strong>things</strong> differently company providing key digital services. <br> 
+                Focused on helping our clients to build a <strong>successful</strong> business on web and mobile.</p>
+            </div>
+
+
+            <div class="cube-portfolio">
+                <div id="filters-container" class="cbp-l-filters-button">
+                    <div data-filter="*" class="cbp-filter-item-active cbp-filter-item"> All Features </div>
+                    <div data-filter=".current-version" class="cbp-filter-item"> Current Version </div>
+                    <div data-filter=".coming-soon" class="cbp-filter-item"> Coming Soon </div>
+                </div><!--/end Filters Container-->
+
+                <div id="grid-container" class="cbp-l-grid-gallery">
+
+                    <div class="cbp-item current-version motion">
+                        <a href="assets/ajax/forums.html" class="cbp-caption cbp-singlePageInline"
+                           data-title="Forums - Connect with others">
+                            <div class="cbp-caption-defaultWrap">
+                                <img src="assets/img/portfolio/1.jpg" alt="">
+                            </div>
+                            <div class="cbp-caption-activeWrap">
+                                <div class="cbp-l-caption-alignLeft">
+                                    <div class="cbp-l-caption-body">
+                                        <div class="cbp-l-caption-title">Forums - Connect with others</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="cbp-item current-version motion">
+                        <a href="assets/ajax/notices.html" class="cbp-caption cbp-singlePageInline"
+                           data-title="Notices - Get online<br>by Tiberiu Neamu">
+                            <div class="cbp-caption-defaultWrap">
+                                <img src="assets/img/portfolio/6.jpg" alt="">
+                            </div>
+                            <div class="cbp-caption-activeWrap">
+                                <div class="cbp-l-caption-alignLeft">
+                                    <div class="cbp-l-caption-body">
+                                        <div class="cbp-l-caption-title">Notices - Get online</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="cbp-item current-version print">
+                        <a href="assets/ajax/complaints.html" class="cbp-caption cbp-singlePageInline"
+                           data-title="Complaints - Manage online">
+                            <div class="cbp-caption-defaultWrap">
+                                <img src="assets/img/portfolio/11.jpg" alt="">
+                            </div>
+                            <div class="cbp-caption-activeWrap">
+                                <div class="cbp-l-caption-alignLeft">
+                                    <div class="cbp-l-caption-body">
+                                        <div class="cbp-l-caption-title">Complaints - Manage online</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="cbp-item current-version">
+                        <a href="assets/ajax/classifieds.html" class="cbp-caption cbp-singlePageInline"
+                           data-title="Classifieds - Intelligent advertising">
+                            <div class="cbp-caption-defaultWrap">
+                                <img src="assets/img/portfolio/8.jpg" alt="">
+                            </div>
+                            <div class="cbp-caption-activeWrap">
+                                <div class="cbp-l-caption-alignLeft">
+                                    <div class="cbp-l-caption-body">
+                                        <div class="cbp-l-caption-title">Classifieds - Intelligent advertising</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="cbp-item current-version">
+                        <a href="assets/ajax/contacts.html" class="cbp-caption cbp-singlePageInline"
+                           data-title="Contacts - Nearby service providers">
+                            <div class="cbp-caption-defaultWrap">
+                                <img src="assets/img/portfolio/2.jpg" alt="">
+                            </div>
+                            <div class="cbp-caption-activeWrap">
+                                <div class="cbp-l-caption-alignLeft">
+                                    <div class="cbp-l-caption-body">
+                                        <div class="cbp-l-caption-title">Contacts - Nearby service providers</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="cbp-item coming-soon motion">
+                        <a href="assets/ajax/chat.html" class="cbp-caption cbp-singlePageInline"
+                           data-title="Private Chat">
+                            <div class="cbp-caption-defaultWrap">
+                                <img src="assets/img/portfolio/4.jpg" alt="">
+                            </div>
+                            <div class="cbp-caption-activeWrap">
+                                <div class="cbp-l-caption-alignLeft">
+                                    <div class="cbp-l-caption-body">
+                                        <div class="cbp-l-caption-title">Private Chat</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="cbp-item coming-soon motion">
+                        <a href="assets/ajax/clubs.html" class="cbp-caption cbp-singlePageInline"
+                           data-title="Groups &amp Clubs">
+                            <div class="cbp-caption-defaultWrap">
+                                <img src="assets/img/portfolio/3.jpg" alt="">
+                            </div>
+                            <div class="cbp-caption-activeWrap">
+                                <div class="cbp-l-caption-alignLeft">
+                                    <div class="cbp-l-caption-body">
+                                        <div class="cbp-l-caption-title">Groups &amp Clubs</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="cbp-item coming-soon print">
+                        <a href="assets/ajax/payment.html" class="cbp-caption cbp-singlePageInline"
+                           data-title="Online Payment &amp Voting">
+                            <div class="cbp-caption-defaultWrap">
+                                <img src="assets/img/portfolio/7.jpg" alt="">
+                            </div>
+                            <div class="cbp-caption-activeWrap">
+                                <div class="cbp-l-caption-alignLeft">
+                                    <div class="cbp-l-caption-body">
+                                        <div class="cbp-l-caption-title">Online Payment &amp Voting</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="container content-lg">
+            <div class="title-v1">
+                <h2>Services</h2>
+                <p>We are working round the clock to provide our customers the best services</p>
+            </div>
+
+            <div class="row service-box-v1">
+                <div class="col-md-4 col-sm-6">
+                    <div class="service-block service-block-default">
+                        <i class="icon-custom icon-lg icon-bg-u rounded-x fa fa-lightbulb-o"></i>
+                        <h2 class="heading-md">Telkon Application</h2>
+                        <p>We provide our users with free Telkon Application</p>
+                        <ul class="list-unstyled">
+                            <li>Android Application(coming soon)</li>
+                            <li>Browser Application</li>
+
+                        </ul>                        
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="service-block service-block-default">
+                        <i class="icon-custom icon-lg icon-bg-u rounded-x icon-line icon-present"></i>
+                        <h2 class="heading-sm">Full Support</h2>
+                        <p>We provide complete support from our end</p>
+                        <ul class="list-unstyled">
+                            <li>Managing Data</li>
+                            <li>Society Maintenance</li>
+                        </ul>                        
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="service-block service-block-default">            
+                        <i class="icon-custom icon-lg icon-bg-u rounded-x icon-line icon-rocket"></i>
+                        <h2 class="heading-sm">Additional Features</h2>
+                        <p>Many other attractive features are on the way</p>
+                        <ul class="list-unstyled">
+                            <li>Realtime Communication</li>
+                            <li>Society Management System</li>
+                        </ul>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <ul class="list-unstyled row portfolio-box-v1">
+            <li class="col-sm-4">
+                <img class="img-responsive" src="assets/img/mockup/img1.jpg" alt="">
+                <div class="portfolio-box-v1-in">
+                    <h3>Just a tap away</h3>
+                    <p>Connect with our Mobile Application</p>
+                    <!--<a class="btn-u btn-u-sm btn-brd btn-brd-hover btn-u-light" href="#">Read More</a>-->
+                </div>
+            </li>
+            <li class="col-sm-4">
+                <img class="img-responsive" src="assets/img/mockup/img2.jpg" alt="">
+                <div class="portfolio-box-v1-in">
+                    <h3>All in One</h3>
+                    <p>Manage all your complaints &amp classifieds with ease</p>
+                    <!--<a class="btn-u btn-u-sm btn-brd btn-brd-hover btn-u-light" href="#">Read More</a>-->
+                </div>
+            </li>
+            <li class="col-sm-4">
+                <img class="img-responsive" src="assets/img/mockup/img4.jpg" alt="">
+                <div class="portfolio-box-v1-in">
+                    <h3>Connect with Laptop</h3>
+                    <p>Access Telkon through browser - fully responsive</p>
+                    <!--<a class="btn-u btn-u-sm btn-brd btn-brd-hover btn-u-light" href="#">Read More</a>-->
+                </div>
+            </li>
+        </ul>
+        
+        <div class="call-action-v1">
+            <div class="container">
+                <div class="call-action-v1-box">
+                    <div class="call-action-v1-in">
+                        <!--
+                        <p>We believe in making world a better place. Smart phone has made our lives quite comfortable and easy. Today, everthing is just a tap away. Be it booking travel tickets, shopping, ordering food, reserving a cab and so on. <br>
+                        Why not Notices &amp Complaints ???</p>
+                    </div>
+                    <div class="call-action-v1-in inner-btn page-scroll">
+                        <a href="#features" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-block">View Our Portfolio</a>
+                        -->
+                    </div>
+                </div>
+            </div>
+        </div>     
+    </section>
+    <!-- End Features Section -->
+
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="about-section">
+
+        <div class="testimonials-v3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <ul class="list-unstyled owl-ts-v1">
+
+                            <li class="item">
+                                <img class="rounded-x img-bordered" src="assets/img/testimonials/sarai-eldeco-1.jpg" alt="">
+                                <div class="testimonials-v3-title">
+                                    <p>S A Rai</p>
+                                    <span>RWA President, Eldeco Residency, Noida</span>
+                                </div>
+                                <p>The creators of <strong>Telkon understand the need of the people</strong> living in Apartments and Societies really well. <br>
+                                    With Telkon, I can reach all the people of my society in no time.</p>
+                            </li>
+
+                            <li class="item">
+                                <img class="rounded-x img-bordered" src="assets/img/testimonials/ravikiran-iim-1.jpg" alt="">
+                                <div class="testimonials-v3-title">
+                                    <p>Ravi Kiran</p>
+                                    <span>IIM, Bangalore</span>
+                                </div>
+                                <p>I personally liked the <strong>product and the features</strong> it provides. <br>
+                                I believe its going to prove really helpful for the people living in <strong>Apartments and Societies</strong>. Good job!<p>
+                            </li>
+
+                            <li class="item">
+                                <img class="rounded-x img-bordered" src="assets/img/testimonials/vikas-ola-1.jpg" alt="">
+                                <div class="testimonials-v3-title">
+                                    <p>Vikas Rana</p>
+                                    <span>Service Engineer, Olacabs (Ex InMobi)</span>
+                                </div>
+                                <p>The <strong>networking algorith</strong> used in Telkon is really advanced and fast. <br>
+                                    I think the future of Telkon is very bright. Have a good luck... Cheers !!!</p>
+                            </li>
+
+                            <li class="item">
+                                <img class="rounded-x img-bordered" src="assets/img/testimonials/farid-nexthought-1.jpg" alt="">
+                                <div class="testimonials-v3-title">
+                                    <p>Mohd Farid</p>
+                                    <span>CEO, NexThoughts</span>
+                                </div>
+                                <p>The unanimous conclusion of all of the staff members involved in our research and review is that <strong>Telkon</strong> is clearly the best product available for <strong>the community residing in socities</strong>.</p>
+                            </li>
+
+                            <li class="item">
+                                <img class="rounded-x img-bordered" src="assets/img/testimonials/nimesh-elita-1.jpg" alt="">
+                                <div class="testimonials-v3-title">
+                                    <p>Nimesh Desai</p>
+                                    <span>Resident, Elita Promenade, Bangalore</span>
+                                </div>
+                                <p>Telkon is the <strong>best platform</strong> that connects the residents beautifully. <br>
+                                    Now, we can get remain <strong>updated to what is going on in our society</strong> easily.</p>
+                            </li>
+
+                            <li class="item">
+                                <img class="rounded-x img-bordered" src="assets/img/testimonials/sanchit-isb-2.jpg" alt="">
+                                <div class="testimonials-v3-title">
+                                    <p>Sanchit Gupta</p>
+                                    <span>ISB, Hyderabad</span>
+                                </div>                                
+                                <p>Keep up the great work. This idea is by far the best, present in the market in terms of <strong>features, quality and future</strong>.</p>
+                            </li>
+
+                            <li class="item">
+                                <img class="rounded-x img-bordered" src="assets/img/testimonials/nida-avj-1.jpg" alt="">
+                                <div class="testimonials-v3-title">
+                                    <p>Nida Sami</p>
+                                    <span>RWA Member, AVJ Heights, Noida</span>
+                                </div>
+                                <p>Telkon has helped our newly created society by revolutionising the way we communicate. <br>
+                                    I give <strong>5 star rating</strong> to each and every feature Telkon offers :).</p>
+                            </li>
+
+                            <li class="item">
+                                <img class="rounded-x img-bordered" src="assets/img/testimonials/sethi-yahoo-2.jpg" alt="">
+                                <div class="testimonials-v3-title">
+                                    <p>Rohit Sethi</p>
+                                    <span>Amazon (Ex Yahoo!)</span>
+                                </div>
+                                <p>So far I really like the <strong>idea</strong>. I am looking forward to explore the product features in details. Kudos! Best Wishes!!</p>
+                            </li>
+
+                            <li class="item">
+                                <img class="rounded-x img-bordered" src="assets/img/testimonials/danish-dreamworks-1.jpg" alt="">
+                                <div class="testimonials-v3-title">
+                                    <p>Danish Ahmed</p>
+                                    <span>Dreamworks Animation</span>
+                                </div>
+                                <p>The template used for the product interface is awesome. Great work by your team. <br>
+                                You guys have a <strong>rock solid product</strong>.</p>
+                            </li>
+
+                        </ul>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Portfolio Section -->
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="contacts-section" ng-controller="EnquireCtrl">
+        <div class="container content-lg">
+            <div class="title-v1">
+                <h2>Contact Us</h2>
+                <p>Please drop us your message - doubts, suggestions, feedback, anything -  we will revert. <br>
+                Looking forward to hear from your side.</p>
+
+                <div class="color-green text-center" ng-if="!isLoading && addMessage && errorCode == 0">
+                    <img id="logo-header" src="images/suc_32.png" alt="Suc"> {{addMessage}}
+                </div>
+                <div class="color-red text-center" ng-if="!isLoading && addMessage && errorCode != 0">
+                    <img id="logo-header" src="images/error_32.png" alt="Error"> {{addMessage}}
+                </div>
+                <div class="text-center" ng-if="isLoading">
+                    <img src="images/page_load.gif">
+                </div>
+
+            </div>
+
+            <div class="row contacts-in">
+                <div class="col-md-6 md-margin-bottom-40">
+                    <ul class="list-unstyled">
+                        <!--<li><i class="fa fa-home"></i> Office Address </li>-->
+                        <!--<li><i class="fa fa-phone"></i> +91 98864 55438 </li>-->
+                        <li><i class="fa fa-envelope"></i> telkonin@gmail.com </li>
+                        <li><i class="fa fa-globe"></i> www.telkon.in </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6">
+                    <form>
+                        <label>Name</label>
+                        <div class="row margin-bottom-20">
+                            <div class="col-md-7 col-md-offset-0">
+                                <input type="text" class="form-control" ng-model="enquire.name">
+                            </div>
+                        </div>
+                        
+                        <label>Email <span class="color-red">*</span></label>
+                        <div class="row margin-bottom-20">
+                            <div class="col-md-7 col-md-offset-0">
+                                <input type="text" class="form-control" ng-model="enquire.email">
+                            </div>
+                        </div>
+                        
+                        <label>Message</label>
+                        <div class="row margin-bottom-20">
+                            <div class="col-md-11 col-md-offset-0">
+                                <textarea rows="8" class="form-control" ng-model="enquire.message">
+                                </textarea>
+                            </div>
+                        </div>
+
+                        <div vc-recaptcha theme="'light'" key="'6LcIpQcTAAAAADXJj5v1N3r4yr6R9nJSmUKf7xNW'"></div>
+                        
+                        <p><button type="submit" class="btn-u btn-brd btn-brd-hover btn-u-dark" ng-click="sendMessage()" ng-disabled="isLoading">Send Message</button></p>
+                    </form> 
+                </div>
+            </div>            
+        </div>
+
+        <div class="copyright-section">
+            <p>2015 &copy; All Rights Reserved. A <a target="_blank" href="http://telkon.in">telkon</a> product</p>
+            <ul class="social-icons">
+                <li><a href="#" data-original-title="Facebook" class="social_facebook rounded-x"></a></li>
+                <li><a href="#" data-original-title="Twitter" class="social_twitter rounded-x"></a></li>
+                <li><a href="#" data-original-title="Goole Plus" class="social_googleplus rounded-x"></a></li>
+                <li><a href="#" data-original-title="Pinterest" class="social_pintrest rounded-x"></a></li>
+                <li><a href="#" data-original-title="Linkedin" class="social_linkedin rounded-x"></a></li>
+            </ul>
+            <span class="page-scroll"><a href="#intro"><i class="fa fa-angle-double-up back-to-top"></i></a></span>
+        </div>
+    </section>
+    <!-- End Contact Section -->
+
+    <!-- JS Global Compulsory -->
+    <script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>    
+    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- JS Libraries -->
+    <script type="text/javascript" src="assets/js/lib/angular.min.js"></script>
+    <script type="text/javascript" src="assets/js/lib/angular-resource.min.js"></script>
+    <script type="text/javascript" src="assets/js/lib/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="assets/js/lib/angular-route.min.js"></script>
+    <script type="text/javascript" src="assets/js/lib/angular-recaptcha.min.js"></script>
+
+    <!-- JS Implementing Plugins -->
+    <script type="text/javascript" src="assets/plugins/smoothScroll.js"></script>
+    <script type="text/javascript" src="assets/plugins/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/pace/pace.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/jquery.parallax.js"></script>
+    <script type="text/javascript" src="assets/plugins/counter/waypoints.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/counter/jquery.counterup.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/owl-carousel/owl.carousel.js"></script>
+    <script type="text/javascript" src="assets/plugins/sky-forms-pro/skyforms/js/jquery.form.min.js"></script>    
+    <script type="text/javascript" src="assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/cube-portfolio/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
+
+    <!-- Configuration File -->
+    <script type="text/javascript" src="js/config.js"></script>
+
+    <!-- Application File -->
+    <script type="text/javascript" src="index.js"></script>
+
+    <!-- Custom File -->
+    
+    <!-- JS Page Level-->
+    <script type="text/javascript" src="assets/js/one.app.js"></script>
+    <script type="text/javascript" src="assets/js/forms/login.js"></script>
+    <script type="text/javascript" src="assets/js/forms/contact.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/pace-loader.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/owl-carousel.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/revolution-slider.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/cube-portfolio/cube-portfolio-lightbox.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            App.init();
+            App.initCounter();
+            App.initParallaxBg();
+            LoginForm.initLoginForm();
+            ContactForm.initContactForm();
+            OwlCarousel.initOwlCarousel();
+            RevolutionSlider.initRSfullScreen();
+        });
+    </script>
+    <!--[if lt IE 9]>
+        <script src="assets/plugins/respond.js"></script>
+        <script src="assets/plugins/html5shiv.js"></script>
+        <script src="assets/js/plugins/placeholder-IE-fixes.js"></script>
+        <script src="assets/plugins/sky-forms-pro/skyforms/js/sky-forms-ie8.js"></script>
+    <![endif]-->
+
+    <!--[if lt IE 10]>
+        <script src="assets/plugins/sky-forms-pro/skyforms/js/jquery.placeholder.min.js"></script>
+    <![endif]-->    
+</body>
+</html>

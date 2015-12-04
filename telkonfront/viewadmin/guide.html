@@ -1,0 +1,138 @@
+<!--COMING SOON -->
+<div class="profile-edit tab-pane" ng-controller="GuideCtrl">
+
+    <div class="row text-center">
+        <div class="col-sm-12 sm-margin-bottom-20">
+            <h2 class="heading-md">Admin's Guide to Telkon</h2>
+        </div>
+    </div>
+    <br>
+
+    <div class="panel-body no-padding" data-mcs-theme="minimal-dark">
+
+        <div class="row profile-event">
+            <div class="col-sm-2">
+                <i class="icon-custom icon-sm icon-bg-dark-blue icon-lg icon-line icon-note"></i>
+            </div>
+            <div class="col-sm-10">
+                <h3 class="heading-xs"><a href="/admin#/notices" ng-click="changeShowOption(viewOptions[0])"><strong>NOTICES</strong></a></h3>
+                <p>
+                    Admin can post <strong>NOTICES</strong></a> to communicate with the residents of the society. <br>
+                    <strong>POST FOR OWNERS</strong> will be delivered to only the owners of the society. <br>
+                    <strong>POST FOR TENANTS</strong> will be delivered to only the tenants of the society. <br>
+                    <strong>POST FOR BOTH</strong>  will be delivered to both owners and tenants. <br>
+                </p>
+            </div>
+        </div>
+        <hr>
+
+        <div class="row profile-event">
+            <div class="col-sm-2">
+                <i class="icon-custom icon-sm icon-bg-dark-blue icon-lg icon-line icon-bulb"></i>
+            </div>
+            <div class="col-sm-10">
+                <h3 class="heading-xs"><a href="/admin#/complaints" ng-click="changeShowOption(viewOptions[1])"><strong>COMPLAINTS</strong></a></h3>
+                <p>
+                    The <strong>COMPLAINTS</strong> are sorted by date, latest first. <br>
+                    Admin can mark a complaint as <strong>ESCALATE</strong>, <strong>PROCESSING</strong> or <strong>RESOLVE</strong>. <br>
+                    Also, admin can <strong>REMOVE</strong> a complaint, if not required anymore. <br>
+                </p>
+            </div>
+        </div>
+        <hr>
+
+        <div class="row profile-event">
+            <div class="col-sm-2">
+                <i class="icon-custom icon-sm icon-bg-dark-blue icon-lg icon-line icon-call-end"></i>
+            </div>
+            <div class="col-sm-10">
+                <h3 class="heading-xs"><a href="/admin#/contacts" ng-click="changeShowOption(viewOptions[2])"><strong>CONTACTS</strong></a></h3>
+                <p>
+                    Admin can maintain a directory of important <strong>CONTACTS</strong> for the residents. <br>
+                    <strong>SERVICE CONTACTS</strong> contains contact of utility provider nearby your area. <br>
+                    <strong>RWA/ASSOCIATION CONTACTS</strong> contains contacts of RWA/Association members. <br>
+                    <strong>INTERCOM CONTACTS</strong> contains intercom contacts, if present.
+                    Admin can <strong>ADD</strong>, <strong>EDIT</strong> or <strong>REMOVE</strong> a contact.
+                </p>
+            </div>
+        </div>
+        <hr>
+
+        <div class="row profile-event">
+            <div class="col-sm-2">
+                <i class="icon-custom icon-sm icon-bg-dark-blue icon-lg icon-line icon-users"></i>
+            </div>
+            <div class="col-sm-10">
+                <h3 class="heading-xs"><a href="/admin#/members" ng-click="changeShowOption(viewOptions[3])"><strong>MEMBERS</strong></a></h3>
+                <p>
+                    All the <strong>MEMBERS</strong> of the society can be accessed from here. <br>
+                    <strong>RED ROW</strong> signifies that the member is reported. <br>
+                    Clicking on member record will show the full details of the members and the complaints registered. <br>
+                    Incase, this member is reported by his flatmate as non-genuine, admin can either <strong>BLOCK</strong>, <strong>CLEAN</strong> or <strong>REMOVE</strong> the member. <br>
+                </p>
+            </div>
+        </div>
+        <hr>
+
+        <div class="row profile-event">
+            <div class="col-sm-2">
+                <i class="icon-custom icon-sm icon-bg-dark-blue icon-lg icon-line icon-user"></i>
+            </div>
+            <div class="col-sm-10">
+                <h3 class="heading-xs"><a href="/admin#/admins" ng-click="changeShowOption(viewOptions[4])"><strong>ADMINS</strong></a></h3>
+                <p>
+                    All the <strong>ADMINS</strong> of the society can be access from here. <br>
+                    There are two types of admins - <br>
+                    <strong>SUPER ADMIN</strong> has full privileges - posting a notice, replying on a complaint, maintaining contacts, action on members. <br>
+                    <strong>ADMIN</strong> also has all privileges accept to <strong>REMOVE</strong> a member and to <strong>ADD</strong> an admin. <br>
+                    Only a superadmin can add another admin.
+                </p>
+            </div>    
+        </div>
+        <hr>
+
+        <div class="row profile-event">
+            <div class="col-sm-2">
+                <i class="icon-custom icon-sm icon-bg-dark-blue icon-lg icon-line icon-screen-tablet"></i>
+            </div>
+            <div class="col-sm-10">
+                <h3 class="heading-xs"><a href="/admin#/profile" ng-click="changeShowOption(null)"><strong>PROFILE</strong></a></h3>
+                <p>
+                    You can edit your <strong>PROFILE</strong> like name, phone number etc, from the drop down menu available at the top right, under your name. <br>
+                </p>
+            </div>    
+        </div>
+        <hr>
+
+        <div class="row profile-event">
+            <div class="col-sm-2">
+                <i class="icon-custom icon-sm icon-bg-dark-blue icon-lg fa fa-exclamation-triangle"></i>
+            </div>
+            <div class="col-sm-10">
+                <h3 class="heading-xs"><a href="/admin#/info" ng-click="changeShowOption(null)"><strong>SOCIETY INFO</strong></a></h3>
+                <p>
+                    You can edit your <strong>SOCIETY INFO</strong> like number of flats etc, from the drop down menu available at the top right, under your name. <br>
+                </p>
+            </div>    
+        </div>
+        <hr>
+
+        <div class="row profile-event">
+            <div class="col-sm-2">
+                <i class="icon-custom icon-sm icon-bg-dark-blue icon-lg icon-line icon-settings"></i>
+            </div>
+            <div class="col-sm-10">
+                <h3 class="heading-xs"><a href="/admin#/account" ng-click="changeShowOption(null)"><strong>ACCOUNT</strong></a></h3>
+                <p>
+                    You can manage your <strong>ACCOUNT</strong> here. The following 2 options are available - <br>
+                    <strong>REMOVE</strong> If you don't want to be an admin of your society, click REMOVE. <br>
+                    <strong>DELETE</strong> If you want to delete your Telkon account permanently, click DELETE. <br>
+                </p>
+            </div>
+        </div>
+        <hr>
+
+    </div>    
+
+</div>
+<!--End Coming Soon -->

@@ -1,0 +1,368 @@
+<!--SIDENAV - POLLS-->
+<div class="profile-edit tab-pane fade in active" ng-controller="PollsCtrl">
+    <div class="row">
+        <div class="col-md-6">
+
+           <div class="btn-group">
+                    
+                <button type="button" class="btn btn-default dropdown-toggle margin-bottom-20 data-menu" data-toggle="dropdown" aria-expanded="false" ng-model="selectedOption">
+                    {{selectedOption}}  <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu" role="menu">
+                        
+                    <li ng-repeat="option in viewOptions" ng-click="changeShowOption(option)" >
+                        <a href="javascript:void(0)">
+                            {{option}}
+                            <span ng-class="{'glyphicon glyphicon-ok pull-right' : option === selectedOption}"></span>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <button class="btn btn-default tooltips margin-left-5 margin-bottom-20 data-menu" type="button" data-toggle="tooltip" data-placement="bottom" title data-original-title="Click to Refresh" ng-click="refreshPolls()">
+                <span class="glyphicon glyphicon-repeat"></span>
+            </button>
+            
+            <button type="button" class="btn btn-warning margin-bottom-20 rounded" data-toggle="modal" data-target="#create_poll">
+                Create New
+            </button>
+
+        </div>
+
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search by Title" ng-model="searchText.title">
+                <span class="input-group-btn">
+                    <button type="button" class="btn-u">Go</button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel margin-bottom-40">
+
+        <table ng-if="!pageLoading" class="table table-hover hover-link">
+
+            <thead>
+
+                <tr class="bg-info">
+                    <th>Date</th>
+                    <th>Title</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr ng-repeat="poll in polls | selectedOptionFilterPolls:this | filter: searchText | unique:'pollid'" ng-class="{'data-row': true, 'new-data': poll.new}">
+                    <td data-toggle="modal" data-target="#show_poll" ng-click="showPoll(poll.pollid)">{{poll.createdat}}</td>
+                    <td data-toggle="modal" data-target="#show_poll" ng-click="showPoll(poll.pollid)">{{poll.title}}</td>
+                    <td data-toggle="modal" data-target="#show_poll" ng-click="showPoll(poll.pollid)">{{poll.desc}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <div ng-if="polls.length <= 0 && !pageLoading" class="row">
+            <div class="col-md-8 col-md-offset-2 text-center heading">
+                <h3>No Polls</h3>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Progress Bar -->
+    <div ng-if="pageLoading" class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="progress">
+                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    <span class="sr-only">100% Complete</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End - Progress Bar -->
+
+    <!--SIDENAV - POLLS - SHOW-->
+    <div id="show_poll" class="modal fade" tabindex="-1" role="dialog" aria-labelledbody="pollShowModal" aria-hidden="true">
+
+        <div id="url" class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <button ng-if="!dataLoading" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                    <div ng-if="!dataLoading">
+                        <button type="button" class="btn btn-danger" ng-click="removePoll(pollShow.pollid)" data-dismiss="modal">
+                            <span class="glyphicon glyphicon-trash"> REMOVE</span>
+                        </button>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div ng-if="dataLoading" class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                    <span class="sr-only">100% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End- Progress Bar -->
+
+                    <div class="note note-error text-center" ng-if="pollShowMsg">
+                        {{pollShowMsg}}
+                    </div>
+
+                    <h1 ng-if="!dataLoading" class="modal-title text-center">{{pollShow.title}}</h1>
+                    <p ng-if="!dataLoading" class="">
+                        <strong>Launched on</strong> : {{pollShow.createdat}} <br>
+                        <strong>Expires on</strong> : {{pollShow.expiry}} <br>
+                        <strong>Meant for</strong> : {{pollShow.meantfor}}
+                    </p>
+
+                </div>
+
+                <div ng-if="!dataLoading" class="modal-body">
+                    <br/><br/>
+
+                    <p>{{pollShow.desc}}</p>
+                    <br>
+
+                    <!-- Counters --> 
+                    <div class="main-counters margin-bottom-40">
+                        <div class="headline"><h2>Counters</h2></div>
+
+                        <div class="row margin-bottom-40">
+                            <div class="counters col-md-4 col-sm-4">
+                                <span class="counter">{{pollShow.totalmembers}}</span>
+                                <h4>Total</h4>
+                            </div>
+                            <div class="counters col-md-4 col-sm-4">
+                                <span class="counter">{{pollShow.totalvoted}}</span>
+                                <h4>Voted</h4>
+                            </div>
+                            <div class="counters col-md-4 col-sm-4">
+                                <span class="counter">{{pollShow.totalmembers-pollShow.totalvoted}}</span>
+                                <h4>Remaining</h4>
+                            </div>
+                        </div>
+
+                        <div class="margin-bottom-50"><hr></div>
+
+                        <div class="row">
+                            <div class="counters col-md-3 col-sm-3">
+                                <span class="counter-icon"><i class="fa fa-gift rounded"></i></span>
+                                <span class="counter">3254</span>   
+                            </div>
+                            <div class="counters col-md-3 col-sm-3">
+                                <span class="counter-icon"><i class="fa fa-coffee rounded"></i></span>
+                                <span class="counter">7068</span> 
+                            </div>
+                            <div class="counters col-md-3 col-sm-3">
+                                <span class="counter-icon"><i class="fa fa-thumbs-up rounded"></i></span>
+                                <span class="counter">5389</span>
+                            </div>
+                            <div class="counters col-md-3 col-sm-3">
+                                <span class="counter-icon"><i class="fa fa-comments rounded"></i></span>
+                                <span class="counter">9172</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Counters -->   
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--End Sidenav - Polls - Show-->
+
+
+    <!--SIDENAV - POLLS - Add-->
+    <div id="create_poll" class="modal fade bs-example-modal-lg" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledbody="pollShowModal" aria-hidden="true">
+
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                    <div id="compose-form" class="sky-form">
+
+                        <header>
+                            Create Poll
+
+                            <div class="text-center" ng-if="isUploading">
+                                <img class="margin-left-5" ng-if="true" src="images/page_load.gif"/>
+                            </div>
+                            <div class="note note-success text-center" ng-if="successMsg">
+                                {{successMsg}}
+                            </div>
+                            <div class="note note-error text-center" ng-if="errorMsg">
+                                {{errorMsg}}
+                            </div>
+
+                        </header>
+
+                        <fieldset>
+
+                            <div class="row">
+                                <section class="col col-6">
+                                    <label class="label">Title</label>
+                                    <label class="input" ng-class="{'state-error': errorCode == 1}">
+                                        <input type="text" placeholder="Enter title for Poll" ng-model="title" ng-model-options="{ updateOn: 'blur' }">
+                                    </label>
+                                    <div class="note note-error">This is a required field.</div>
+                                </section>
+
+                                <section class="col col-6">
+                                    <label class="label">Valid for</label>
+                                    <label class="select">
+                                        <select ng-model="validfor" required>
+                                            <option value="" disabled>select</option>
+                                            <option ng-repeat="val in validForValues" value="{{val}}">
+                                                {{val}} days
+                                            </option>
+                                            <option ng-repeat-end value=0>
+                                                Indefinite
+                                            </option>
+                                        </select>
+                                    </label>
+                                </section>
+                            </div>
+
+                            <section>
+                                <label class="label">Description</label>
+                                <label class="input" ng-class="{'state-error': errorCode == 2}">
+                                    <input type="text" placeholder="Enter one line description" ng-model="desc">
+                                </label>
+                            </section>
+
+                            <section>
+                                <label class="label">Meant for</label>
+                                <div class="inline-group">
+                                    <label class="radio">
+                                        <input type="radio" ng-model="meantfor" value="2">
+                                            <i ng-click="meantfor=2" class="rounded-x"></i> Both 
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" ng-model="meantfor" value="0">
+                                            <i ng-click="meantfor=0" class="rounded-x"></i> Owners 
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" ng-model="meantfor" value="1">
+                                        <i ng-click="meantfor=1" class="rounded-x"></i> Tenants
+                                    </label>
+                                </div>
+                            </section>
+                            <br>
+                            <hr>
+
+                            <form editable-form name="editableForm" class="sky-form" onaftersave="saveUser()">
+                                
+                                <section ng-repeat="item in pollItems" class="poll-item">
+
+                                    <h4 class="text-center">
+                                        Item: {{$index + 1}}
+                                        <button type="button" class="btn btn-danger btn-xs margin-right-10 pull-right" ng-click="removeItem($index)">
+                                            Remove
+                                        </button>
+                                    </h4>
+                                    
+                                   
+
+                                    <br>
+                                    
+                                    <table class="table">
+                                        <tr>
+                                            <td>
+                                                <span class="title">Type: </span>
+                                            </td>
+                                            <td>
+                                                <span editable-select="item.itemtype" e-name="itemtype" e-ng-options="t.val as t.text for t in itemTypes">
+                                                    {{ item.itemtype || itemTypes[0].text}}
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <span class="title">Description: </span>
+                                            </td>
+                                            <td>
+                                                <span editable-text="item.desc" e-name="desc" onbeforesave="checkName($data)" e-required>
+                                                    {{ item.desc || 'item description'}}
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr ng-if="item.itemtype !== itemTypes[2]">
+                                            <td>
+                                                <span class="title">Options: </span>
+                                            </td>
+                                            <td>
+                                                <span editable-text="item.values" e-name="values" onbeforesave="checkName($data)" e-required>
+                                                    {{ item.values || 'comma separated options'}}
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+
+                                </section>
+
+                                <div ng-if="pollItems.length > 0" class="buttons">
+
+                                    <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+                                        Edit
+                                    </button>
+
+                                    <button class="btn btn-default margin-left-5" ng-click="addPollItem()" ng-show="!editableForm.$visible">
+                                        <span class="glyphicon glyphicon-plus"></span> Add Item
+                                    </button>
+
+                                    <span ng-show="editableForm.$visible">
+                                        <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+                                            Save
+                                        </button>
+                                        <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+                                            Cancel
+                                        </button>
+                                    </span>
+
+                                </div>
+
+                            </form>                  
+
+                            <br><br>
+                            <hr>
+                            <button class="btn btn-success pull-right margin-left-5" ng-click="launchPoll()">
+                                LAUNCH POLL
+                            </button>
+
+                            <button class="btn btn-warning pull-right margin-left-5" ng-click="previewPoll()">
+                                PREVIEW
+                            </button>
+
+                            <button class="btn btn-danger pull-right" ng-click="clearForm()">
+                                RESET
+                            </button>
+                            
+                        </fieldset>
+                                    
+                    </div>
+
+                </div>
+        </div>                             
+    </div>
+    <!--End Sidenav - Polls - Add-->
+
+</div>
+<!--End Sidenav - Polls-->
+

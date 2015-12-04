@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="oAuthApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="oAuthApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="oAuthApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="oAuthApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Telkon | Auth</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <!-- CSS Global Compulsory -->
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- CSS Implementing Plugins -->
+  <link rel="stylesheet" href="css/plugins.css">
+  <link rel="stylesheet" href="plugins/line-icons/line-icons.css">
+  <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="plugins/sky-forms/version-2.0.1/css/custom-sky-forms.css">
+
+  <!--[if lt IE 9]><link rel="stylesheet" href="plugins/revolution-slider/rs-plugin/css/settings-ie8.css" type="text/css" media="screen"><![endif]-->
+  <!--[if lt IE 9]><link rel="stylesheet" href="plugins/revolution-slider/rs-plugin/css/settings-ie8.css" type="text/css" media="screen"><![endif]-->
+
+  <!-- CSS Theme -->
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/pages/register.css">
+  <link rel="stylesheet" href="css/pages/index.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/blocks.css">
+
+  <!-- CSS Customization -->
+  <link rel="stylesheet" href="css/custom.css">
+  
+</head>
+<body ng-class="{'loading': bodyPageLoaderShow}" ng-controller="PageCtrl">
+
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+
+  <div class="wrapper" ng-cloak>
+    
+    <!--=== HEADER ===-->
+    <div class="header">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <div class="container">
+
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a id="website-link" class="navbar-brand" href="javascript:void(0)">
+                        <img id="logo-header" src="images/logo_94x32.png" alt="Logo">
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- End Topbar -->
+
+    </div>
+    <!--=== End Header ===-->
+
+    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 margin-top-20 padding-bottom-20">
+
+        <div ng-if="!bodyPageLoaderShow" class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="shadow-wrapper margin-bottom-60">
+                    <div ng-if="message" class="tag-box tag-box-v1 box-shadow shadow-effect-2">
+
+                          <button class="btn btn-small btn-primary pull-right" ng-click="goBack()">
+                            Go back
+                          </button>
+
+                          <h4 class="color-red">
+                            <img src="images/error_64.png" alt="Error">
+                            {{message}}
+                          </h4>
+                          <h5>Or login/signup without Google Plus</h5>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    
+
+  </div>
+  
+  <div class="modal-page-load"></div>
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+   <!-- JS Global Compulsory -->
+  <script type="text/javascript" src="plugins/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="plugins/jquery/jquery-migrate.min.js"></script>
+  <script type="text/javascript" src="plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/plugins/bootbox.min.js"></script>
+
+  <!-- JS Libraries -->
+  <script type="text/javascript" src="js/lib/angular.min.js"></script>
+  <script type="text/javascript" src="js/lib/angular-resource.min.js"></script>
+  <script type="text/javascript" src="js/lib/angular-sanitize.min.js"></script>
+  <script type="text/javascript" src="js/lib/angular-route.min.js"></script>
+
+
+  <!-- Configuration File -->
+  <script type="text/javascript" src="js/config.js"></script>
+
+  <!-- Website App File -->
+  <script type="text/javascript" src="oauth.js"></script>
+
+  <!-- Configuration File -->
+  <script type="text/javascript" src="js/custom.js"></script>
+
+
+</body>
+</html>

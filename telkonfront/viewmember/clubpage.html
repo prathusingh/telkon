@@ -1,0 +1,514 @@
+<!--CLUB PAGE -->
+<div class="profile-edit profile-body tab-pane" ng-controller="ClubPageCtrl">
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <button class="btn btn-default tooltips margin-left-5 data-menu" type="button">
+                <site-header back="back"></site-header>
+            </button>
+
+            <button class="btn btn-default tooltips margin-left-5 data-menu" type="button" data-toggle="tooltip" data-placement="bottom" title data-original-title="Click to Refresh" ng-click="refreshClubPage()">
+                <span class="glyphicon glyphicon-repeat"></span>
+            </button>
+
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <br>
+
+    <div class="text-center">
+        <h3>Club Page</h3>
+    </div>
+
+    <!-- Load More Bar -->
+    <div ng-if="pageLoading" class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="progress">
+                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    <span class="sr-only">100% Complete</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End - Load More Bar -->
+
+    <div ng-if="!pageLoading && (!club || !club.clubid)">
+
+         <div class="col-md-12">
+            <div class="shadow-wrapper margin-bottom-60">
+                <div class="tag-box tag-box-v1 box-shadow shadow-effect-2">
+
+
+                    <h2 class="text-center">
+                        <img id="logo-header" src="images/error_64.png" alt="Error">
+                        <strong>Club - Not Found</strong>
+                    </h2>
+                    <hr>
+                    <h5>
+                        This might have been caused either - 
+                    </h5> <br>
+                    <h5>
+                        <i class="glyphicon glyphicon-asterisk"></i> The CLUB has been deleted
+                    </h5> <br>
+                    <h5>
+                        <i class="glyphicon glyphicon-asterisk"></i> You do not have sufficient permission
+                    </h5> <br>
+                    <h5>
+                        <i class="glyphicon glyphicon-asterisk"></i> Server problem
+                    </h5> <br>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Profile Content -->
+    <div ng-if="!pageLoading && (club && club.clubid)" class="profile-body">
+        <div class="profile-bio">
+
+            <div class="row">
+
+                <div class="col-md-5">
+
+                    <img ng-if="club.imagedp" class="img-responsive md-margin-bottom-10" src="{{club.imagedp}}" width==300 alt="">
+                    <img ng-if="!club.imagedp" class="img-responsive md-margin-bottom-10" src="/images/logo/256x256.jpg" width==300 alt="">
+
+                    <a class="btn btn-xs btn-warning" href="javascript:void(0)" ng-if="userinfo.isadmin" data-toggle="modal" data-target="#upload_dp"><i class="glyphicon glyphicon-pencil"></i> Change Picture</a>
+                </div>
+
+                <div class="col-md-7">
+
+                    <button ng-if="(userinfo.issubscribed) && (!userinfo.isadmin)" class="btn btn-xs btn-primary pull-right" disabled>
+                        <i class="glyphicon glyphicon-ok "></i> Member
+                    </button>
+                    <button ng-if="userinfo.isadmin" class="btn btn-xs btn-warning pull-right" disabled>
+                        <i class="glyphicon glyphicon-ok "></i> Admin
+                    </button>
+                    <button ng-if="!userinfo.issubscribed" class="btn btn-xs btn-success pull-right" ng-click="subscribeClub()">
+                        Become Member
+                    </button>
+
+                    <h1 class="color-blue">{{club.name}}</h1>
+                    <h5 class="color-green hover-link" ng-click="navigateToSociety(club.socid)"><i class="fa fa-map-marker"></i> {{club.bysocietyname}}, {{club.bycity}}</h5>
+                    <hr>
+                    <span><strong>Club Type:</strong> {{club.clubtype}}</span>
+                    <span><strong>Category:</strong> {{club.category}}</span>
+                    <span><strong>Founded on:</strong> {{club.createdat}}</span>
+                    
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="">
+                <div class="row">
+                    <!-- Social Network -->
+                    <div class="col-md-12 md-margin-bottom-50">
+                        <div class="headline-left margin-bottom-30">
+                            <h2 class="headline-brd heading-md">ABOUT</h2>
+                        </div>
+                        <p>{{club.details}}</p><br>
+                    </div>
+                </div>
+            </div>
+        </div><!--/end row-->
+                            
+        <hr>
+
+        <div>
+            
+            <div class="panel panel-profile">
+                <div class="panel-heading overflow-h">
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <h2 class="panel-title heading-sm pull-left">
+                                <i class="fa fa-tasks"></i>Members
+                            </h2>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control pull-right" placeholder="Search members" ng-model="searchText.members">
+                        </div>
+
+                        <div class="col-sm-1">
+                            <button type="button" class="btn-u pull-right" ng-click="searchMembers()">Go</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <div class="row">
+
+                        <!-- Search Result Box -->
+                        <div ng-if="isSearch.members" class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                                <strong>Search results: </strong><span class="label label-danger">{{searchText.members}}</span>
+                                <hr>
+                            </div>
+                        </div>
+                        <!-- End - Search Result Box -->
+
+                        <div ng-if="members.length == 0" class="text-center">
+                            <h3>No Members</h3>
+                        </div>
+
+                        {{errMsgMembers}}
+                        <div class="col-sm-6" ng-repeat="member in members">
+                            <div class="profile-blog blog-border">
+
+                                <img ng-if="member.imagedp" class="rounded-x" src="{{member.imagedp}}" alt="">
+                                <img ng-if="!member.imagedp" class="rounded-x" src="images/default_profile_photo.png" alt="">
+                                
+                                <div class="name-location">
+                                    <strong><h4 class="color-blue hover-link" ng-click="navigateToUser(member.uid)">{{member.name || 'No Name'}}</h4></strong>
+                                    <span class="color-green hover-link" ng-click="navigateToSociety(member.socid)"><i class="fa fa-map-marker"></i> {{member.societyname}}, {{member.city}}</span>
+                                </div>
+                                <div class="clearfix margin-bottom-20"></div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-4 col-sm-offset-4">
+                                <button ng-if="!isLoadMembersCompleted && !isLoadingMembers && !errMsgMember && (members.length > 0)" type="button" class="btn-u btn-u-default btn-u-sm btn-block margin-top-10" ng-click="loadMoreMembers()">
+                                    Load More
+                                </button>
+                                <div ng-if="isLoadingMembers" class="row text-center">
+                                    <img src="images/page_load.gif">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>        
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="row margin-bottom-20">
+
+            <!--Post-->
+            <div class="col-sm-7">
+                <div class="panel panel-profile no-bg">
+                    <div class="panel-heading overflow-h">
+                        <button ng-if="userinfo.issubscribed" class="btn btn-xs btn-success pull-right" data-toggle="modal" data-target="#new_post" ng-click="clearForm()">
+                            Add New
+                        </button>
+                        <h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i>Discussions</h2>
+                    </div>
+                    <div id="scrollbar" class="panel-body no-padding mCustomScrollbar123" data-mcs-theme="minimal-dark">
+
+                        <h5 ng-if="(posts.length == 0) && !postsMsg " class="text-center">No Posts</h5>
+
+                        <div class="text-center color-red" ng-if="postsMsg">
+                            {{postsMsg}}
+                        </div>
+
+                        <div ng-repeat="post in posts" class="profile-post color-{{post.itemcolor}}">
+                            <span class="profile-post-numb">
+                                <img class="rounded-x" src="{{ post.byimagedp || 'images/default_profile_photo.png'}}" width=50px alt="">
+                            </span>
+                            <div class="profile-post-in">
+                                <h3 class="heading-xs"><a href="javascript:void(0)"><span class="color-blue" ng-click="navigateToClubpost(post.clubpostid)">{{post.title || 'No Title'}}</span></a></h3>
+                                <p>{{post.details}}</p>
+                                <small class="pull-left"><em>
+                                    Posted by <span class="color-blue hover-link" ng-click="navigateToUser(post.uid)">{{post.byname}}</span>
+                                </em></small>
+                                <small class="pull-right"><em>
+                                    <span class="color-red">{{post.createdat}}</span>
+                                </em></small>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <button ng-if="!isPostsCompleted && !isLoadingPosts && !postsMsg && (posts.length > 0)" type="button" class="btn-u btn-u-default btn-u-sm btn-block margin-top-10" ng-click="loadMorePosts()">
+                                    Load More
+                                </button>
+                                <div ng-if="isLoadingPosts" class="row text-center">
+                                    <img src="images/page_load.gif">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--End Post-->
+
+            <!--Event-->
+            <div class="col-sm-5 md-margin-bottom-20">
+                <div class="panel panel-profile no-bg">
+                    <div class="panel-heading overflow-h">
+                        <h2 class="panel-title heading-sm pull-left"><i class="fa fa-briefcase"></i>Events/Meetings</h2>
+                        <button ng-if="userinfo.isadmin" class="btn btn-xs btn-success pull-right" data-toggle="modal" data-target="#new_event" ng-click="clearForm()">
+                            Add New
+                        </button>
+                    </div>
+                    <div id="scrollbar" class="panel-body no-padding mCustomScrollbar123" data-mcs-theme="minimal-dark">
+
+                        <h5 ng-if="(events.length == 0) && !eventsMsg " class="text-center">No Events</h5>
+
+                        <div class="text-center color-red" ng-if="eventsMsg">
+                            {{eventsMsg}}
+                        </div>
+
+                        <div ng-repeat="event in events" class="profile-event">
+                            <div class="date-formats color-red">
+                                <span>{{event.eventday}}</span>
+                                <small>{{event.eventmonth}}</small>
+                            </div>
+                            <div class="overflow-h">
+                                <h3 class="heading-xs"><a href="javascript:void(0)">{{event.title}}</a></h3>
+                                <p>{{event.details}}</p>
+                                 <span class="color-green"><i class="fa fa-map-marker"></i> <strong>Venue: </strong></span> {{event.venue || 'Not mentioned'}}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <button ng-if="!isEventsCompleted && !isLoadingEvents && !eventsMsg && (events.length > 0)" type="button" class="btn-u btn-u-default btn-u-sm btn-block margin-top-10" ng-click="loadMoreEvents()">
+                                    Load More
+                                </button>
+                                <div ng-if="isLoadingEvents" class="row text-center">
+                                    <img src="images/page_load.gif">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>    
+                </div>
+            </div>
+            <!--End Event-->
+
+        </div><!--/end row-->
+
+        <hr>
+
+    </div>
+
+
+    <!--EVENT ADD-->
+    <div id="new_event" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledbody="myModalLabel" aria-hidden="true" style="display: none;">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-no-border">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                                      
+                <div class="modal-body">
+
+                    <form action="" class="sky-form">
+                        <header><strong class="main-heading"> New Event/Meeting</strong></header>
+
+                        <fieldset>
+
+                            <section>
+
+                                <div class="text-center color-red" ng-if="newEvent.addMsg && (newEvent.addErr != 0)">
+                                  <img id="logo-header" src="images/error_32.png" alt="Error"> {{newEvent.addMsg}}
+                                </div>
+
+                                <div class="text-center color-green" ng-if="newEvent.addMsg && (newEvent.addErr == 0)">
+                                  <img id="logo-header" src="images/suc_32.png" alt="Suc"> {{newEvent.addMsg}}
+                                </div>
+
+                                <div class="text-center" ng-if="newEvent.isCreatingNew">
+                                    <img src="images/page_load.gif">
+                                </div>
+                            </section>
+
+                            <div class="row">
+
+                                <section class="col-md-6">
+                                    <label class="label">Name</label>
+                                    <label ng-class="{'input': true, 'state-error': newEvent.addErr == 1}">
+                                        <input type="text" placeholder="Eg. Music Night" ng-model="newEvent.title" required>
+                                    </label>
+                                </section>
+
+                                <section class="col-md-6">
+                                    <label class="label">Date</label>
+                                    <label ng-class="{'input': true, 'state-error': newEvent.addErr == 2}">
+                                        <i class="icon-append fa fa-calendar"></i>
+                                        <input type="text" name="finish" id="finish" placeholder="DD/MM/YYYY" ng-model="newEvent.date" required>
+                                    </label>
+                                </section>
+
+                            </div>
+                                
+
+                            <section>
+                                <label class="label">Venue</label>
+                                <label class="input">
+                                    <input type="text" placeholder="(optional)" ng-model="newEvent.venue">
+                                </label>
+                            </section>
+
+                            <section>
+                                <label class="label">Details/Agenda</label>
+                                <label ng-class="{'textarea': true, 'state-error': newEvent.addErr == 3}">
+                                    <textarea rows="8" ng-model="newEvent.details" placeholder="Enter details" required></textarea>
+                                </label>
+                            </section>
+
+                        </fieldset>
+                    </form>
+
+                </div>
+
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button type="button" class="btn btn-primary pull-right" ng-click="postAddNewEvent()">
+                                Declare Event
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--Event Add - End -->
+
+    <!--Post ADD-->
+    <div id="new_post" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledbody="myModalLabel" aria-hidden="true" style="display: none;">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-no-border">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                                      
+                <div class="modal-body">
+
+                    <form action="" class="sky-form">
+                        <header><strong class="main-heading"> New Post</strong></header>
+
+                        <fieldset>
+
+                            <section>
+
+                                <div class="text-center color-red" ng-if="newPost.addMsg && (newPost.addErr != 0)">
+                                  <img id="logo-header" src="images/error_32.png" alt="Error"> {{newPost.addMsg}}
+                                </div>
+
+                                <div class="text-center color-green" ng-if="newPost.addMsg && (newPost.addErr == 0)">
+                                  <img id="logo-header" src="images/suc_32.png" alt="Suc"> {{newPost.addMsg}}
+                                </div>
+
+                                <div class="text-center" ng-if="newPost.isCreatingNew">
+                                    <img src="images/page_load.gif">
+                                </div>
+                            </section>
+
+                            <section>
+                                <label class="label">Title</label>
+                                <label ng-class="{'input': true, 'state-error': newPost.addErr == 1}">
+                                    <input type="text" placeholder="Eg. Lets have a Music Night" ng-model="newPost.title" required>
+                                </label>
+                            </section>
+
+                            <section>
+                                <label class="label">Details</label>
+                                <label ng-class="{'textarea': true, 'state-error': newPost.addErr == 2}">
+                                    <textarea rows="8" ng-model="newPost.details" placeholder="Enter details" required></textarea>
+                                </label>
+                            </section>
+
+                        </fieldset>
+                    </form>
+
+                </div>
+
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button type="button" class="btn btn-primary pull-right" ng-click="postAddNewPost()">
+                                Start Discussion
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--Post Add - End -->
+
+    <!--UPLOAD DP-->
+    <div id="upload_dp" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledbody="myModalLabel" aria-hidden="true" style="display: none;">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-no-border">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+
+                <div class="modal-body">
+
+                    <form action="" class="sky-form">
+                        <header>Upload your picture</header>
+
+                        <fieldset>
+
+                            <section>
+
+                                <div class="text-center color-red" ng-if="imageUpload.addMsg && (imageUpload.addErr != 0)">
+                                    <img id="logo-header" src="images/error_32.png" alt="Error"> {{imageUpload.addMsg}}
+                                </div>
+
+                                <div class="text-center color-green" ng-if="imageUpload.addMsg && (imageUpload.addErr == 0)">
+                                    <img id="logo-header" src="images/suc_32.png" alt="Suc"> {{imageUpload.addMsg}}
+                                </div>
+
+                                <div class="text-center" ng-if="imageUpload.isUploading">
+                                    <img src="images/page_load.gif">
+                                </div>
+
+                            </section>
+
+                            <section>
+                                <label class="label">Select an image file</label>
+                                <label for="file" class="input input-file">
+                                    <div class="button">
+                                        <input name="imageFile" type="file" id="fileInput" ng-model="imagedpFile" onchange="this.parentNode.nextSibling.value = this.value" file>
+                                        Browse
+                                    </div><input type="text" readonly>
+                                </label>
+                            </section>
+
+                        </fieldset>
+                    </form>
+
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 text-center">
+                            <div class="cropArea">
+                                <img-crop image="myImage" result-image="myCroppedImage" area-type="square" result-image-size=300 result-image-format="image/png"></img-crop>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+                            <button class="btn btn-primary btn-block margin-top-20" ng-click="upload()">
+                                update
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Upload Dp - End -->
+
+</div>
+<!--End Club Page -->

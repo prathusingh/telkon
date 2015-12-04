@@ -1,0 +1,149 @@
+<!--COMING SOON -->
+<div class="profile-edit tab-pane" ng-controller="GuideCtrl">
+
+    <div class="row text-center">
+        <div class="col-sm-12 sm-margin-bottom-20">
+            <h2 class="heading-md">Member's Guide to Telkon</h2>
+        </div>
+    </div>
+    <br>
+
+    <div class="panel-body no-padding" data-mcs-theme="minimal-dark">
+
+        <div class="row profile-event">
+            <div class="col-sm-2">
+                <i class="icon-custom icon-sm icon-bg-dark-blue icon-lg icon-line icon-users"></i>
+            </div>
+            <div class="col-sm-10">
+                <h3 class="heading-xs"><a href="/member#/forums" ng-click="changeShowOption(viewOptions[0])"><strong>FORUMS</strong></a></h3>
+                <p>
+                    A member can post <strong>FORUMS</strong></a> to discuss anything. There are two types forums - <br>
+                    <strong>PRIVATE FORUMS</strong>  are visible to the members of your society only. <br>
+                    <strong>PUBLIC FORUMS</strong>  are visible to the members of other societies' as well. <br>
+                    You can mark a forum as <strong>FAVORITE</strong> to distinguish it from others.
+                    You can comment(<strong>FOR</strong>, <strong>NEUTRAL</strong> or <strong>AGAINST</strong>) on a forum. <br>
+                    Also, you can express your feeling against a forum through the <strong>EMOTICONS</strong> provided :p <br>
+                    You can view all the forums posted by you in the <strong>SIDE NAVIGATION BAR</strong> under <a href="/member#/myforums" ng-click="changeShowOption(viewSideOptions[4])"><strong>'My Forums'</a></strong>
+                </p>
+            </div>
+        </div>
+        <hr>
+
+        <div class="row profile-event">
+            <div class="col-sm-2">
+                <i class="icon-custom icon-sm icon-bg-dark-blue icon-lg icon-line icon-note"></i>
+            </div>
+            <div class="col-sm-10">
+                <h3 class="heading-xs"><a href="/member#/notices" ng-click="changeShowOption(viewOptions[1])"><strong>NOTICES</strong></a></h3>
+                <p>
+                    A member can save <strong>NOTICES</strong> for later reference. <br>
+                    Saved notices can be accessed through <a href="/member#/savednotices" ng-click="changeShowOption(viewSideOptions[5])"><strong>'Saved Notices'</strong></a> tab present in <strong>SIDE NAVIGATION BAR</strong>
+                </p>
+            </div>
+        </div>
+        <hr>
+
+        <div class="row profile-event">
+            <div class="col-sm-2">
+                <i class="icon-custom icon-sm icon-bg-dark-blue icon-lg icon-line icon-bulb"></i>
+            </div>
+            <div class="col-sm-10">
+                <h3 class="heading-xs"><a href="/member#/complaints" ng-click="changeShowOption(viewOptions[2])"><strong>COMPLAINTS</strong></a></h3>
+                <p>
+                    A member can <strong>REGISTER</strong> <strong>COMPLAINTS</strong>, may request an <strong>ESCALATION</strong>, if necessary or can <strong>REMOVE</strong> it when resolved.
+                </p>
+            </div>
+        </div>
+        <hr>
+
+        <div class="row profile-event">
+            <div class="col-sm-2">
+                <i class="icon-custom icon-sm icon-bg-dark-blue icon-lg icon-line icon-credit-card"></i>
+            </div>
+            <div class="col-sm-10">
+                <h3 class="heading-xs"><a href="/member#/classifieds" ng-click="changeShowOption(viewOptions[3])"><strong>CLASSIFIEDS</strong></a></h3>
+                <p>
+                    A member can post <strong>CLASSIFIEDS</strong> which will be visible to every member of Telkon. <br>
+                    Posted classifieds can be accessed from <a href="/member#/myclassifieds" ng-click="changeShowOption(viewSideOptions[3])"><strong>'My Classifieds'</strong></a> in <strong>SIDE NAVIGATION BAR</strong>
+                    You can save classifieds as well. Access them under <a href="/member#/savedclassifieds" ng-click="changeShowOption(viewSideOptions[6])"><strong>'Saved Classifieds'</strong></a> tab present in <strong>SIDE NAVIGATION BAR</strong>
+                </p>
+            </div>
+        </div>
+        <hr>
+
+        <div class="row profile-event">
+            <div class="col-sm-2">
+                <i class="icon-custom icon-sm icon-bg-dark-blue icon-lg icon-line icon-call-end"></i>
+            </div>
+            <div class="col-sm-10">
+                <h3 class="heading-xs"><a href="/member#/contacts" ng-click="changeShowOption(viewOptions[4])"><strong>CONTACTS</strong></a></h3>
+                <p>
+                    Member can access the important <strong>CONTACTS</strong> - <br>
+                    <strong>SERVICE CONTACTS</strong> contains contact of utility provider nearby your area. <br>
+                    <strong>AROUND ME CONTACTS</strong> contains other important contacts around you. <br>
+                    <strong>RWA/ASSOCIATION CONTACTS</strong> contains contacts of RWA/Association members. <br>
+                    <strong>INTERCOM CONTACTS</strong> contains intercom contacts, if present.
+                </p>
+            </div>    
+        </div>
+        <hr>
+
+        <div class="row profile-event">
+            <div class="col-sm-2">
+                <i class="icon-custom icon-sm icon-bg-dark-blue icon-lg icon-line icon-user"></i>
+            </div>
+            <div class="col-sm-10">
+                <h3 class="heading-xs"><a href="/member#/family" ng-click="changeShowOption(viewSideOptions[1])"><strong>FAMILY MEMBERS</strong></a></h3>
+                <p>
+                    You can view the family members/flatmates using Telkon from <strong>'Family Members'</strong> tab available in <strong>SIDE NAVIGATION BAR</strong>. <br>
+                    <strong>REPORT</strong> Please report a family member, if you think its not genuine. <br>
+                </p>
+            </div>    
+        </div>
+        <hr>
+
+        <div class="row profile-event">
+            <div class="col-sm-2">
+                <i class="icon-custom icon-sm icon-bg-dark-blue icon-lg icon-line icon-users"></i>
+            </div>
+            <div class="col-sm-10">
+                <h3 class="heading-xs"><a href="/member#/members" ng-click="changeShowOption(viewSideOptions[1])"><strong>SOCIETY MEMBERS</strong></a></h3>
+                <p>
+                    You can also view all the members of your society using Telkon from <strong>'Society Members'</strong> tab available in <strong>SIDE NAVIGATION BAR</strong>. <br>
+                </p>
+            </div>    
+        </div>
+        <hr>
+
+        <div class="row profile-event">
+            <div class="col-sm-2">
+                <i class="icon-custom icon-sm icon-bg-dark-blue icon-lg icon-line icon-screen-tablet"></i>
+            </div>
+            <div class="col-sm-10">
+                <h3 class="heading-xs"><a href="/member#/profile" ng-click="changeShowOption(null)"><strong>PROFILE</strong></a></h3>
+                <p>
+                    You can edit your <strong>PROFILE</strong> like name, phone number etc, from the drop down menu available at the top right, under your name. <br>
+                </p>
+            </div>    
+        </div>
+        <hr>
+
+        <div class="row profile-event">
+            <div class="col-sm-2">
+                <i class="icon-custom icon-sm icon-bg-dark-blue icon-lg icon-line icon-settings"></i>
+            </div>
+            <div class="col-sm-10">
+                <h3 class="heading-xs"><a href="/member#/account" ng-click="changeShowOption(null)"><strong>ACCOUNT</strong></a></h3>
+                <p>
+                    You can manage your <strong>ACCOUNT</strong> here. The following 2 options are available - <br>
+                    <strong>REMOVE</strong> If you are moving to another society and you want to change your society, go for it. <br>
+                    <strong>DELETE</strong> If you want to delete your Telkon account permanently, go for it. <br>
+                </p>
+            </div>
+        </div>
+        <hr>
+
+    </div>    
+
+</div>
+<!--End Coming Soon -->

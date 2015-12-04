@@ -1,0 +1,159 @@
+<!--SIDENAV - SAVED NOTICES-->
+<div class="profile-edit tab-pane fade in active" ng-controller="SavedNoticesCtrl">
+
+    <div class="row">
+        <button class="btn btn-default tooltips margin-left-5 data-menu" type="button" data-toggle="tooltip" data-placement="bottom" title data-original-title="Click to Refresh" ng-click="refreshSavedNotices()">
+            <span class="glyphicon glyphicon-repeat"></span>
+        </button>
+    </div>
+        
+    <div class="row text-center">
+        <div class="col-sm-12 sm-margin-bottom-20">
+            <h3 class="heading-md">Saved Notices</h3>
+        </div>
+    </div>
+
+
+    <div class="panel margin-bottom-40">
+
+        <table ng-if="!pageLoading" class="table table-hover hover-link">
+            
+            <thead>
+                <tr class="bg-info">
+                    <th>Date</th>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr ng-repeat="notice in savednotices | unique:'nid'" class="data-row">
+                    <td  data-toggle="modal" data-target="#show_savednotice" ng-click="clickSavedNotice(notice)">
+                        {{notice.createdat}}
+                    </td>
+                    <td data-toggle="modal" data-target="#show_savednotice" ng-click="clickSavedNotice(notice)">
+                        {{notice.title}}
+                    </td>
+                    <td data-toggle="modal" data-target="#show_savednotice" ng-click="clickSavedNotice(notice)">
+                        {{notice.contentshort}}
+                    </td>
+                    <td>
+                        <button class="btn btn-danger btn-xs" ng-click="removeSavedNotice(notice)">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+
+        <div ng-if="savednotices.length <= 0 && !pageLoading" class="row">
+            <div class="col-md-8 col-md-offset-2 text-center heading">
+                <h5>No Saved Notices</h5>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Progress Bar -->
+    <div ng-if="pageLoading" class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="progress">
+                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    <span class="sr-only">100% Complete</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End - Progress Bar -->
+
+
+    <!--SIDENAV - SAVED NOTICES - SHOW-->
+    <div id="show_savednotice" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledbody="noticeShowModal" aria-hidden="true">
+
+        <div ng-if="dataShowErr == -1" class="modal-dialog modal-md">
+            <div class="modal-content">
+
+                <!-- Progress Bar -->
+                <div ng-if="dataLoading" class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                <span class="sr-only">100% Complete</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End- Progress Bar -->
+
+                <div ng-if="!dataLoading" class="modal-header text-center color-red">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    ERROR: {{dataShowMsg}} <br>
+                    <img id="logo-header" src="images/error_64.png" alt="Error">
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="dataShowErr != -1" class="modal-dialog modal-lg">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <button ng-if="!dataLoading" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        
+                    <button ng-if="!dataLoading" type="button" class="btn btn-xs btn-danger" ng-click="removeSavedNotice(savedNoticeShow)" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-trash"> REMOVE</span>
+                    </button>
+
+                    <!-- Progress Bar -->
+                    <div ng-if="dataLoading" class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                    <span class="sr-only">100% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End- Progress Bar -->
+
+                    <h1 ng-if="!dataLoading" class="modal-title text-center">{{savedNoticeShow.title}}</h1>
+
+                </div>
+
+                <div ng-if="savedNoticeShow.contenturl && !dataLoading" class="modal-body">
+
+                    <p class="pull-right">{{savedNoticeShow.createdat}}</p>
+                    <br/><br/>
+
+                    <iframe ng-if="!dataLoading" ng-src="{{noticeShowUrl}}" style="width:100%; height:800px;" frameborder="0"></iframe>
+                        
+                </div>
+
+                <div ng-if="!savedNoticeShow.contenturl && !dataLoading" class="modal-body">
+
+                    <p class="pull-right">{{savedNoticeShow.createdat}}</p>
+                    <br><br>
+
+                    <pre>{{savedNoticeShow.desc}}</pre>
+
+                    <br/>
+        
+                    <h5>{{savedNoticeShow.byname}}</h5>
+                    <h6>{{savedNoticeShow.byposition}}</h6>
+                    <h6>{{savedNoticeShow.bydepartment}}</h6>
+                    <h6>{{savedNoticeShow.bysocietyname}}</h6>
+                        
+                </div>
+
+            </div>
+        </div>
+                                
+    </div>
+    <!--End Sidenav Saved Notices - Show-->
+
+</div>
+<!--End Sidenav Saved Notices-->
+
+
+    

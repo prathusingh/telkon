@@ -1,0 +1,326 @@
+<!--SIDENAV - MEMBERS-->
+<div class="profile-edit tab-pane fade in" ng-controller="MemberListCtrl">
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <!-- Single button -->
+            <div class="btn-group">
+                
+                <button type="button" class="btn btn-default dropdown-toggle data-menu" data-toggle="dropdown" aria-expanded="false" ng-model="selectedOption">
+                    {{selectedOption}}  <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu" role="menu">
+                        
+                    <li ng-repeat="option in viewOptions" ng-click="changeShowOption(option)" >
+                        <a href="javascript:void(0)">
+                            {{option}}
+                            <span ng-class="{'glyphicon glyphicon-ok pull-right' : option === selectedOption}"></span>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <button class="btn btn-default tooltips margin-left-5 data-menu" type="button" data-toggle="tooltip" data-placement="bottom" title data-original-title="Click to Refresh" ng-click="refreshMembers()">
+                <span class="glyphicon glyphicon-repeat"></span>
+            </button>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search by Name/Email/Flat" ng-model="searchText">
+                <span class="input-group-btn">
+                    <button type="button" class="btn-u" ng-click="searchMembers()">Go</button>
+                </span>
+            </div>
+        
+        </div>
+
+    </div>
+    <br/>
+
+    <div class="panel margin-bottom-40">
+
+        <table ng-if="!pageLoading" class="table table-hover hover-link">
+
+            <thead>
+
+                <tr class="bg-info">
+                    <th>Flat</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Type</th>
+                    <th class="pull-right margin-right-5">Action</th>
+                </tr>
+        
+            </thead>
+
+            <tbody infinite-scroll='loadMore()' infinite-scroll-disabled='isLoadingMore' infinite-scroll-distance='1'>
+
+                <tr ng-repeat="member in members | selectedOptionFilterMembers:this | unique:'uid'" ng-class="{'data-row': true, 'data-row-read': false, 'new-data': member.new, 'danger': member.isreported, 'data-row-blocked': member.isblocked}">
+                    <td data-toggle="modal" data-target="#show_member" ng-click="clickMember(member.uid, member.flat)">
+                        {{member.flat}}
+                    </td>
+                    <td data-toggle="modal" data-target="#show_member" ng-click="clickMember(member.uid, member.flat)">
+                        {{member.name || 'N/A'}}
+                    </td>
+                    <td data-toggle="modal" data-target="#show_member" ng-click="clickMember(member.uid, member.flat)">
+                        {{member.email}}
+                    </td>
+                    <td data-toggle="modal" data-target="#show_member" ng-click="clickMember(member.uid, member.flat)">
+                        {{member.residencetype || 'N/A'}}
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-xs pull-right margin-left-5" ng-click="removeMember(member.uid)">
+                            Remove
+                        </button>
+                        <button ng-if="!member.isblocked" type="button" class="btn btn-warning btn-xs pull-right margin-left-5" ng-click="blockMember(member.uid)">
+                            Block
+                        </button>
+                        <button ng-if="member.isblocked" type="button" class="btn btn-success btn-xs pull-right margin-left-5" ng-click="unblockMember(member.uid)">
+                            Unblock
+                        </button>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <div ng-if="members.length <= 0 && !pageLoading" class="row">
+            <div class="col-md-8 col-md-offset-2 text-center heading">
+                <h3>No Members</h3>
+            </div>
+        </div>
+
+        <!-- Load More Bar -->
+        <div ng-if="!pageLoading && isLoadingMore && !isLoadCompleted" class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                        <span class="sr-only">100% Complete</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End - Load More Bar -->
+
+    </div>
+
+    <!-- Progress Bar -->
+    <div ng-if="pageLoading" class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="progress">
+                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    <span class="sr-only">100% Complete</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End- Progress Bar -->
+
+
+    <!--SIDENAV HOME - MEMBERS  - SHOW-->
+    <div id="show_member" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledbody="noticeShowModal" aria-hidden="true">
+
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    
+                                                    
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                    <h3 class="modal-title text-center">Member Details</h3>
+                    <br/>
+                </div>
+    
+                <div class="modal-body">
+                    
+                    <!-- Progress Bar -->
+                    <div ng-if="dataLoading" class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                    <span class="sr-only">100% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End- Progress Bar -->
+
+
+                    <!--Profile Body-->
+                    <div ng-if="!dataLoading" class="profile-body">
+                        <div class="profile-bio">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img class="img-responsive md-margin-bottom-10" src="{{ memberShow.imagedp || 'images/default_profile_photo.png' }}" alt="">
+                                </div>
+                                <div class="col-md-9">
+
+                                    <div class="note note-error text-center" ng-if="memberDetailsMsg">
+                                        {{memberDetailsMsg}}
+                                    </div>
+
+                                    <!--
+                                    <button ng-if="!memberShow.isblocked" type="button" class="btn btn-danger btn-xs pull-right margin-left-5" ng-click="removeMember(memberShow.uid)">
+                                        Remove
+                                    </button>
+
+                                    <button ng-if="memberShow.isblocked" type="button" class="btn btn-success btn-xs pull-right margin-left-5" ng-click="unblockMember(memberShow.uid)">
+                                        Unblock
+                                    </button>
+                                    -->
+
+                                    <button type="button" class="btn btn-danger btn-xs pull-right margin-left-5" data-dismiss="modal" ng-click="removeMember(memberShow.uid)">
+                                        Remove
+                                    </button>
+                                    <button ng-if="!memberShow.isblocked" type="button" class="btn btn-warning btn-xs pull-right margin-left-5" data-dismiss="modal" ng-click="blockMember(memberShow.uid)">
+                                        Block
+                                    </button>
+                                    <button ng-if="memberShow.isblocked" type="button" class="btn btn-success btn-xs pull-right margin-left-5" data-dismiss="modal" ng-click="unblockMember(memberShow.uid)">
+                                        Unblock
+                                    </button>
+                                    <h2>{{memberShow.name || 'Not Mentioned'}}</h2>
+                                    <span><strong>Flat:</strong> {{memberShow.flat.toUpperCase()}}</span>
+                                    <span><strong>Email:</strong> {{memberShow.email}}</span>
+                                    <span><strong>Phone:</strong> {{memberShow.phone || 'Not Mentioned'}}</span>
+                                    <span><strong>Residence type:</strong> {{memberShow.residencetype || 'Not Mentioned'}}</span>
+                                    <span><strong>Member since:</strong> {{memberShow.membersince}}</span>
+
+                                    <div ng-if="memberShow.isreported">
+                                        <hr>
+                                        <span class="label label-red"> Reported by</span>
+                                        <p ng-repeat="item in reportedby">
+                                            <strong>Name:</strong> {{item.name || 'Not Mentioned'}} <br>
+                                            <strong>Flat:</strong> {{ item.flat }} <br>
+                                            <strong>Email:</strong> {{item.email}} <br>
+                                            <strong>Phone:</strong> {{item.phone || 'Not Mentioned'}} <br>
+
+                                            <button type="button" class="btn btn-info btn-xs pull-right margin-left-5" data-dismiss="modal" ng-click="cleanMember(memberShow.uid)">
+                                                Clean
+                                            </button>
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--/end row-->
+                    </div>
+
+                    <br/>
+
+                    <h1 class="text-center">Complaints</h1>
+                        
+
+                    <div class="panel margin-bottom-40">
+
+                        <div ng-if="!complaintsLoading && memberComplaintsMsg" class="note note-error text-center" ng-if="memberComplaintsMsg">
+                            {{memberComplaintsMsg}}
+                        </div>
+
+                        <!-- Progress Bar -->
+                        <div ng-if="complaintsLoading" class="row">
+                            <div class="col-md-8 col-md-offset-2">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                        <span class="sr-only">100% Complete</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End- Progress Bar -->
+
+                        <table ng-if="!complaintsLoading" class="table table-hover hover-link">
+                            
+                            <thead>
+
+                                <tr class="info text-center">
+                                    <th style="width:15%;">Register Date</th>
+                                    <th style="width:25%;">Subject</th>
+                                    <th class="text-center" style="width:60%;">Timeline</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+
+                                <tr ng-repeat="complaint in complaints" ng-class="{'data-row': true, 'new-data': complaint.new}">
+                                    <td ng-click="clickComplaint(complaint.compid)">
+                                        {{complaint.createdat}}
+                                    </td>
+                                    <td ng-click="clickComplaint(complaint.compid)">
+                                        {{complaint.subject}}
+                                    </td>
+
+                                    <td ng-click="clickComplaint(complaint.compid)">
+
+                                        <table class="table hover-link">
+                                            <thead>
+                                                <tr class="info text-center">
+                                                    <th>Date</th>
+                                                    <th>Status</th>
+                                                    <th>Comments</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="item in complaint.timeline" ng-class="{'data-row': true, 'new-data': complaint.new}">
+                                                    <td>{{item.date}}</td>
+                                                    <td>{{item.complaintstatus}}</td>
+                                                    <td>{{item.comments}}</td>
+                                                </tr>
+
+                                                <tr ng-repeat-end="item in complaint.timeline" class="margin-bottom-5">
+                                    
+                                                    <button type="button" class="btn btn-danger btn-xs margin-left-5" ng-click="removeComplaint(complaint.compid)">
+                                                        Remove
+                                                    </button>
+
+                                                    <button ng-if="complaint.currentstatus !== 'Resolved'" type="button" class="btn btn-primary btn-xs margin-left-5" ng-click="escalateComplaint(complaint.compid)" ng-disabled="complaint.isescalated">
+                                                        <span ng-if="complaint.isescalated" class="glyphicon glyphicon-ok"></span> Escalate
+                                                    </button>
+
+                                                    <button ng-if="complaint.currentstatus != 'Resolved'" type="button" class="btn btn-success btn-xs margin-left-5" ng-click="processingComplaint(complaint.compid)" ng-disabled="complaint.currentstatus === 'Processing'">
+                                                        <span ng-if="complaint.currentstatus === 'Processing'" class="glyphicon glyphicon-ok"></span> Processing
+                                                    </button>
+
+                                                    <button ng-disabled="complaint.currentstatus === 'Resolved'" class="btn btn-success margin-bottom-5 pull-right rounded" ng-click="resolvedComplaint(complaint.compid)">
+                                                        <span ng-if="complaint.isresolved" class="glyphicon glyphicon-ok"></span> RESOLVED
+                                                    </button>
+                                                    
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                        <div ng-if="complaints.length <= 0 && !complaintsLoading" class="row">
+                            <div class="col-md-8 col-md-offset-2 text-center heading">
+                                <h3>No Complaints</h3>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--End Sidenav Home - Complaints - Show-->
+
+
+</div>
+<!--End Members-->

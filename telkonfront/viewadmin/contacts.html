@@ -1,0 +1,296 @@
+<!--SIDENAV HOME - CONTACTS-->
+<div class="profile-edit tab-pane fade in active" ng-controller="ContactsCtrl">
+
+     <!-- Tab v1 -->
+    <div class="tab-v1">
+        <ul class="nav nav-tabs">
+            <li ng-repeat="tab in tabs" ng-class="{'active': selectedTab == $index}">
+                <a href="javascript:void(0)" data-toggle="tab" ng-click="changeTab($index)">
+                    {{tab}}
+                </a>
+            </li>
+        </ul>
+        
+        <div class="tab-content">
+
+            <div class="row margin-top-10">
+
+                <div class="col-md-6">
+                    <div class="btn-group">
+                        <button class="btn btn-default tooltips margin-left-5 margin-bottom-20 data-menu" type="button" data-toggle="tooltip" data-placement="bottom" title data-original-title="Click to Refresh" ng-click="changeTab(selectedTab)">
+                            <span class="glyphicon glyphicon-repeat"></span>
+                        </button>
+                    </div>
+                    <button class="btn btn-success margin-bottom-20 margin-right-5 rounded" ng-click="addContact(selectedTab)">New Contact</button>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn-u">Go</button>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div ng-if="selectedTab == 0" class="tab-pane fade in active">
+                
+                <div class="panel margin-bottom-40">
+
+                    <br>
+                    <!-- Progress Bar -->
+                    <div ng-if="pageLoading" class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                    <span class="sr-only">100% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End - Progress Bar -->
+
+                    <table ng-if="!pageLoading" class="table table-bordered table-hover table-condensed panel panel-blue">
+                        <thead>
+                            <tr class="info">
+                                <th>Type</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr ng-repeat="contact in contacts | searchFilterContacts:this">
+
+                                <td>
+                                    <span editable-select="contact.servicetype" e-name="servicetype" e-form="rowform" onbeforesave="checkType($data)" e-ng-options="t as t for t in contactTypes">
+                                        {{ contact.servicetype }}
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <span editable-text="contact.name" e-name="name" e-form="rowform" onbeforesave="checkName($data)" e-required>
+                                        {{ contact.name || 'No Name'}}
+                                    </span>
+                                </td>
+                             
+                                <td>
+                                    <span editable-text="contact.phone" e-name="phone" e-form="rowform" onbeforesave="checkPhone($data)" e-required>
+                                        {{ contact.phone || 'No Phone'}}
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <span editable-text="contact.email" e-name="email" e-form="rowform" onbeforesave="checkEmail($data)">
+                                        {{ contact.email || 'No Email'}}
+                                    </span>
+                                </td>
+
+                                <td style="white-space: nowrap">
+                                    
+                                    <form editable-form name="rowform" onbeforesave="saveContact($index, 1, $data, contact.contactid, selectedTab)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == contact">
+                                        <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+                                            save
+                                        </button>
+                                        <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel(); removeContact($index, 1, contact.contactid, false)" class="btn btn-default">
+                                            cancel
+                                        </button>
+                                    </form>
+
+                                    <div class="buttons" ng-show="!rowform.$visible">
+                                        <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+                                        <button class="btn btn-danger" ng-click="removeContact($index, 1, contact.contactid, true)">del</button>
+                                    </div>
+                                    
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <div ng-if="contacts.length <= 0 && !pageLoading" class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center heading">
+                            <h3>No Contacts</h3>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div ng-if="selectedTab == 1" class="tab-pane fade in active" id="rwa">
+                
+                <div class="panel margin-bottom-40">
+                    
+                    <br>
+                    <!-- Progress Bar -->
+                    <div ng-if="pageLoading" class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                    <span class="sr-only">100% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End - Progress Bar -->
+
+                    <table ng-if="!pageLoading" class="table table-bordered table-hover table-condensed panel panel-blue">
+                        <thead>
+                            <tr class="info">
+                                <th>Position</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Flat</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr ng-repeat="contact in contacts | searchFilterContacts:this">
+
+                                <td>
+                                    <span editable-text="contact.position" e-name="position" e-form="rowform" onbeforesave="checkPosition($data)" e-required>
+                                        {{ contact.position || 'No Position'}}
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <span editable-text="contact.name" e-name="name" e-form="rowform" onbeforesave="checkName($data)" e-required>
+                                        {{ contact.name || 'No Name'}}
+                                    </span>
+                                </td>
+                             
+                                <td>
+                                    <span editable-text="contact.phone" e-name="phone" e-form="rowform" onbeforesave="checkPhone($data)" e-required>
+                                        {{ contact.phone || 'No Phone'}}
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <span editable-text="contact.email" e-name="email" e-form="rowform" onbeforesave="checkEmail($data)">
+                                        {{ contact.email || 'No Email'}}
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <span editable-text="contact.flat" e-name="flat" e-form="rowform" onbeforesave="checkFlat($data)">
+                                        {{ contact.flat || 'No Flat'}}
+                                    </span>
+                                </td>
+
+                                <td style="white-space: nowrap">
+                                    <!-- form -->
+                                    <form editable-form name="rowform" onbeforesave="saveContact($index, 3, $data, contact.contactid, selectedTab)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == contact">
+                                        <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+                                            save
+                                        </button>
+                                        <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel(); removeContact($index, 3, contact.contactid, false)" class="btn btn-default">
+                                            cancel
+                                        </button>
+                                    </form>
+
+                                    <div class="buttons" ng-show="!rowform.$visible">
+                                        <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+                                        <button class="btn btn-danger" ng-click="removeContact($index, 3, contact.contactid, true)">del</button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div ng-if="contacts.length <= 0 && !pageLoading" class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center heading">
+                            <h3>No Contacts</h3>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div ng-if="selectedTab == 2" class="tab-pane fade in active" id="intercom">
+                
+                <div class="panel margin-bottom-40">
+                    
+                    <br>
+
+                    <!-- Progress Bar -->
+                    <div ng-if="pageLoading" class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                    <span class="sr-only">100% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End - Progress Bar -->
+
+                    <table ng-if="!pageLoading" class="table table-bordered table-hover table-condensed panel panel-blue">
+                        <thead>
+                            <tr class="info">
+                                <th>Location</th>
+                                <th>Phone</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr ng-repeat="contact in contacts | searchFilterContacts:this">
+
+                                <td>
+                                    <span editable-text="contact.location" e-name="location" e-form="rowform" onbeforesave="checkLocation($data)">
+                                        {{ contact.location }}
+                                    </span>
+                                </td>
+                             
+                                <td>
+                                    <span editable-text="contact.phone" e-name="phone" e-form="rowform" onbeforesave="checkNumber($data)" e-required>
+                                        {{ contact.phone }}
+                                    </span>
+                                </td>
+
+                                <td style="white-space: nowrap">
+                                    
+                                    <form editable-form name="rowform" onbeforesave="saveContact($index, 4, $data, contact.contactid, selectedTab)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == contact">
+                                        <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+                                            save
+                                        </button>
+                                        <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel(); removeContact($index, 4, contact.contactid, false)" class="btn btn-default">
+                                            cancel
+                                        </button>
+                                    </form>
+
+                                    <div class="buttons" ng-show="!rowform.$visible">
+                                        <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+                                        <button class="btn btn-danger" ng-click="removeContact($index, 4, contact.contactid, true)">del</button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div ng-if="contacts.length <= 0 && !pageLoading" class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center heading">
+                            <h3>No Contacts</h3>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

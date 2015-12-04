@@ -1,0 +1,70 @@
+<!--SIDENAV - FAMILY-->
+<div class="profile-edit tab-pane fade in active" ng-controller="FamilyCtrl">
+
+    <div class="row">
+        <button class="btn btn-default tooltips margin-left-5 data-menu" type="button" data-toggle="tooltip" data-placement="bottom" title data-original-title="Click to Refresh" ng-click="refreshFamily()">
+            <span class="glyphicon glyphicon-repeat"></span>
+        </button>
+    </div>
+                                            
+    <div class="row text-center">
+        <div class="col-sm-12 sm-margin-bottom-20">
+            <h2 class="heading-md">Family Members using Telkon</h2>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div ng-if="pageLoading" class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="progress">
+                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    <span class="sr-only">100% Complete</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End - Progress Bar -->
+
+    <div ng-if="!pageLoading" ng-repeat="rows in family" class="row profile-body margin-bottom-20">
+        
+        <div ng-repeat="item in rows" class="col-sm-6 sm-margin-bottom-20">
+
+            <div ng-class="{'profile-blog blog-border': true,  'hover-border': !item.isreported, 'reported': item.isreported}">
+                <span ng-if="item.isreported" class="label label-red pull-right" style="opacity: 1;">REPORTED</span>
+                <img class="rounded-x" src="{{ item.imagedp || 'images/default_profile_photo.png' }}" alt="">
+                <div class="name-location">
+                    <strong>{{item.name || 'No Name'}}</strong>
+                </div>
+                <div class="clearfix margin-bottom-20"></div>
+
+                <dl class="dl-horizontal">
+                    <dt><strong>Email </strong></dt>
+                    <dd>
+                        {{item.email}}
+                    </dd>
+                    <dt><strong>Phone </strong></dt>
+                    <dd>
+                        {{item.phone || 'No Phone'}}
+                    </dd>
+                </dl>
+
+                <hr>
+                Not a family member?
+                <button ng-if="!item.isreported" class="btn btn-danger pull-right" ng-click="report(item.uid)" ng-disabled="item.isreported">REPORT</button>
+            </div>
+
+        </div>
+    
+
+    </div>
+
+    <div ng-if="family.length <= 0 && !pageLoading" class="row">
+        <div class="col-md-8 col-md-offset-2 text-center heading">
+            <h5>No Family Member</h5>
+        </div>
+    </div>
+
+    </div>
+
+</div>
+<!--End Sidenav Family-->

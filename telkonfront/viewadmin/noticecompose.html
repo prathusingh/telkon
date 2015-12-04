@@ -1,0 +1,53 @@
+
+<form id="sky-form" class="sky-form">
+
+    <header>Compose Notice</header>
+                                    
+    <fieldset>
+
+        <div class="row">   
+            <section class="col col-6">
+                <label class="label">Title</label>
+                <label class="input">
+                    <input type="text" placeholder="Enter title for Notice">
+                </label>
+            </section>
+
+            <section class="col col-6">
+                <label class="label">Valid upto</label> 
+                <label class="input">
+                    <input type="text" placeholder="Select the number of days">
+                </label>
+            </section>
+        </div>
+                                    
+        <script src="plugins/tinymce/tinymce.min.js"></script>
+        <script type="text/javascript">
+        tinymce.init({
+            selector: "textarea",
+            theme: "modern",
+            plugins: [
+                        "advlist autolink autosave link image lists charmap print preview hr anchor pagebreak spellchecker",
+                        "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                        "table contextmenu directionality emoticons template textcolor paste fullpage textcolor colorpicker textpattern"
+            ],
+
+            toolbar1: "newdocument | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | styleselect formatselect fontselect fontsizeselect",
+            toolbar2: "searchreplace | bullist numlist | outdent indent blockquote | undo redo | link unlink anchor image media code | insertdatetime preview | forecolor backcolor",
+            toolbar3: "table | hr removeformat | subscript superscript | charmap emoticons | print fullscreen | ltr rtl | spellchecker | visualchars visualblocks nonbreaking template pagebreak restoredraft",
+
+            image_advtab: true,
+            templates: [
+                {title: 'Test template 1', content: 'Test 1'},
+                {title: 'Test template 2', content: 'Test 2'}
+            ]
+        });
+        </script>
+
+        <textarea name="content" style="width:100%; height: 400px;"></textarea>
+        
+    </fieldset>
+                                    
+</form>
+
+

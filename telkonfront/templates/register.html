@@ -1,0 +1,67 @@
+<!--=== Register Part ===-->
+<div class="container content" ng-controller="RegisterCtrl">
+
+    <!--
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+            <button type="submit" class="btn btn-info rounded-2x margin-left-5 pull-right" onclick="location.href = '#/createAd'">
+                New Society
+            </button>
+        </div>
+    </div>
+    <br>
+    -->
+
+    <div class="row">
+
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3" ng-controller="RegisterCtrl">
+
+                <form class="reg-page" name="registerform">
+                    
+                    <div class="reg-header">
+                        <h2 class="color-blue">New Member Registration</h2>
+
+                        <h2 class="text-center">
+                            <img ng-if="isLoading" src="images/page_load.gif">
+                            <span ng-if="message && !isLoading" class="label label-danger text-center">{{message}}</span>
+                        </h2>
+
+                    </div>
+
+                    <label>Email <span class="color-red">*</span></label>
+                    <input type="email" class="form-control margin-bottom-20" ng-model="email">
+
+                    <label>Password <span class="color-red">*</span></label>
+                    <input type="password" class="form-control margin-bottom-20" ng-model="password">
+
+                    <label>Confirm Password <span class="color-red">*</span></label>
+                    <input type="password" class="form-control margin-bottom-20" ng-model="rpassword">
+                    <input type="checkbox" ng-model="agree"> I agree
+                    <label>
+                        <a href="#/terms" class="color-green" target="_blank">Terms and Conditions</a>
+                    </label>
+
+                    <div class="row">
+                        <div class="col-lg-8 checkbox">
+                        </div>
+                        <div class="col-lg-4 text-right">
+                            <button class="btn btn-success" type="submit" ng-click="submitRegister()" ng-disabled="!agree">Register</button>
+                        </div>
+                    </div>
+
+                    <hr class="devider devider-dotted">
+
+                    <div class="row margin-top-20 margin-bottom-40">
+                        <div class="col-sm-12 col-md-12">
+                            <button class="btn btn-block btn-googleplus-inversed rounded" ng-click="logInWithGoogle()">
+                                <i class="fa fa-google-plus"></i> Register with Google+
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+    </div>
+</div><!--/container-->     
+<!--=== End Register Part ===-->

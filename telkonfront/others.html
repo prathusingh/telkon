@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="othersApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Telkon</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <!-- CSS Global Compulsory -->
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- CSS Implementing Plugins -->
+  <link rel="stylesheet" href="css/plugins.css">
+  <link rel="stylesheet" href="plugins/line-icons/line-icons.css">
+  <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="plugins/sky-forms/version-2.0.1/css/custom-sky-forms.css">
+
+  <!--[if lt IE 9]><link rel="stylesheet" href="plugins/revolution-slider/rs-plugin/css/settings-ie8.css" type="text/css" media="screen"><![endif]-->
+  <!--[if lt IE 9]><link rel="stylesheet" href="plugins/revolution-slider/rs-plugin/css/settings-ie8.css" type="text/css" media="screen"><![endif]-->
+
+  <!-- CSS Theme -->
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/pages/register.css">
+  <link rel="stylesheet" href="css/pages/index.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/blocks.css">
+
+  <!-- CSS Customization -->
+  <link rel="stylesheet" href="css/custom.css">
+  
+</head>
+<body ng-class="{'loading': bodyPageLoaderShow}" ng-controller="PageCtrl">
+
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+
+  <div class="wrapper" ng-cloack>
+    
+    <!--=== HEADER ===-->
+    <div class="header">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <div class="container">
+
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="fa fa-bars"></span>
+                    </button>
+                        <img id="logo-header" src="images/logo_94x32.png" alt="Logo">
+                    </a>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav pull-right">
+                        <li class="dropdown">
+
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false">
+                               <img class="rounded-x" width=50px src="images/default_profile_photo.png" alt="">
+                                <strong>{{name || 'User'}} </strong> <span class="glyphicon glyphicon-chevron-down"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+
+                                <li ng-click="logout()"><a href="javascript:void(0)"><span class="glyphicon glyphicon-off"> Logout</span></a></li>
+
+                            </ul>
+
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>    
+        <!-- End Topbar -->
+
+    </div>
+    <!--=== End Header ===-->
+
+    <div>
+
+      <br>
+
+     
+      <div ng-if="!dataLoading" class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="shadow-wrapper margin-bottom-60">
+              <div class="tag-box tag-box-v1 box-shadow shadow-effect-2">
+
+                  <div ng-view></div>
+
+                  <p>
+                    <button class="btn btn-danger margin-bottom-20" ng-click="suspendAccount()">
+                      Delete Account
+                    </button>
+                  </p>
+
+              </div>
+          </div>
+        </div>
+
+      </div>
+       
+ 
+    </div>
+
+  </div>
+  
+  <div class="modal-page-load"></div>
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+   <!-- JS Global Compulsory -->
+  <script type="text/javascript" src="plugins/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="plugins/jquery/jquery-migrate.min.js"></script>
+  <script type="text/javascript" src="plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/plugins/bootbox.min.js"></script>
+
+  <!-- JS Libraries -->
+  <script type="text/javascript" src="js/lib/angular.min.js"></script>
+  <script type="text/javascript" src="js/lib/angular-resource.min.js"></script>
+  <script type="text/javascript" src="js/lib/angular-sanitize.min.js"></script>
+  <script type="text/javascript" src="js/lib/angular-route.min.js"></script>
+  <script type="text/javascript" src="js/lib/socket.io.js"></script>
+
+  <!-- Configuration File -->
+  <script type="text/javascript" src="js/config.js"></script>
+  
+  <!-- Website App File -->
+  <script type="text/javascript" src="othersapp.js"></script>
+
+  <!-- Services -->
+  <script type="text/javascript" src="js/services/others.js"></script>
+
+  <!-- Controllers -->
+  <script type="text/javascript" src="js/controllers/others.js"></script>
+
+  <!-- Configuration File -->
+  <script type="text/javascript" src="js/custom.js"></script>
+
+
+</body>
+</html>

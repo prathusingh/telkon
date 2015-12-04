@@ -1,0 +1,121 @@
+    <!--=== Details Part ===-->
+    <div class="container content" ng-controller="DetailsCtrl">
+
+         <div class="row">
+            <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+                <button class="btn btn-warning rounded-2x pull-right" type="submit" ng-click="guestLogin()">
+                    Login as GUEST
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+
+                <form class="reg-page" name="detailsform">
+                    <div class="reg-header">            
+                        <h2>
+                            Enter the details
+                            <br/>
+                            <img ng-if="isLoading" src="images/page_load.gif">
+                            <span class="label label-danger">{{message}}</span>
+                        </h2>
+                        
+                    </div>
+
+                    <fieldset>
+
+                        <div class="input-group margin-bottom-20">
+                            <label>City</label>
+                            <input type="email" placeholder="Email" class="form-control" ng-model="email">
+                        </div>
+
+                    
+                    <section>
+                        <label>City</label>
+                        <label class="input">
+
+                            <input type="text" ng-model="city" disabled>
+                            <!--
+                            <input type="text" list="citylist" ng-model="city" ng-change="updateSocieties()">
+                            <datalist id="citylist">
+                                <option ng-repeat="city in selectCities" value="{{city}}">{{city}}</option>
+                            </datalist>
+                            -->
+                        </label>
+                    </section>
+
+                    <section>
+                        <label>Society</label>
+                        <label class="select">
+                            <select ng-model="society" ng-change="updateFlatSample()">
+                                <option value="" disabled>select</option>
+                                <option ng-repeat="(key, value) in selectSocieties" value="{{value.societyname}}">
+                                    {{value.societyname}}
+                                </option>
+                                <option ng-repeat-end value="Others">Others</option>
+                            </select>
+                        </label>
+                    </section>
+                    
+                    <section ng-if="society === 'Others'">
+                        <label ng-class="{'input': true, 'state-error': errorCode == 3}">
+                            Name
+                            <input type="text" class="form-control margin-bottom-20" placeholder="Enter your society name" ng-model="obj.otherSociety">
+                        </label>
+                        
+                    </section>
+
+                    <section ng-if="society && society !== 'Others'">
+                        <label ng-class="{'input': true, 'state-error': errorCode == 2}">
+                            Flat
+                            <input type="text" class="form-control margin-bottom-20" placeholder="{{'Eg. ' + flatSample}}" ng-model="obj.flat" ng-change="clearMessage()">
+                        </label>
+                    </section>
+
+                    <section ng-if="society && society !== 'Others'">
+
+                        <div class="inline-group">
+                            <label class="radio">
+                                <input type="radio" ng-model="obj.residenceType" value="tenant">
+                                    <i ng-click="obj.residenceType='tenant'" class="rounded-x"></i> Tenant 
+                            </label>
+                            <label class="radio">
+                                <input type="radio" ng-model="obj.residenceType" value="owner">
+                                <i ng-click="obj.residenceType='owner'" class="rounded-x"></i> Owner
+                            </label>
+                        </div>
+
+                        <!--    
+                        <div class="inline-group">
+                            <label class="radio">
+                                <input type="radio" class="form-control margin-bottom-20" name="radio-inline" placeholder="{{'Eg. ' + flatSample}}" ng-model="obj.residencetype" checked>
+                                Rent
+                            </label>
+                            <label class="radio">
+                                <input type="radio" class="form-control margin-bottom-20" name="radio-inline" placeholder="{{'Eg. ' + flatSample}}" ng-model="obj.residencetype">
+                                Owner
+                            </label>
+                        </div>
+                        -->
+                    </section>
+
+                </fieldset>
+                   
+                <hr>
+
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <button class="btn btn-block btn-primary pull-right" type="submit" ng-click="submitDetails()">
+                            ENTER
+                        </button>
+                    </div>
+                </div>
+
+                <br/>
+
+            </div>
+        </div><!--/row-->
+    </div><!--/container--> 
+    <!--=== End Login Part ===-->

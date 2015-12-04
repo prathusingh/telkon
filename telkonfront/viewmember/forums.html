@@ -1,0 +1,259 @@
+<!--FORUMS-->
+<div class="profile-edit tab-pane fade in active" ng-controller="ForumsCtrl">
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <!-- Single button -->
+            <div class="btn-group">
+                    
+                <button type="button" class="btn btn-default dropdown-toggle data-menu" data-toggle="dropdown" aria-expanded="false" ng-model="selectedOption">
+                    {{selectedOption}}  <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu" role="menu">
+                        
+                    <li ng-repeat="option in viewOptions" ng-click="changeShowOption(option)" >
+                        <a href="javascript:void(0)">
+                            {{option}}
+                            <span ng-class="{'glyphicon glyphicon-ok pull-right' : option === selectedOption}"></span>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <button class="btn btn-default tooltips margin-left-5 data-menu" type="button" data-toggle="tooltip" data-placement="bottom" title data-original-title="Click to Refresh" ng-click="refreshForums()">
+                <span class="glyphicon glyphicon-repeat"></span>
+            </button>
+
+            <button type="button" class="btn btn-success pull-right margin-bottom-20 rounded" data-toggle="modal" data-target="#new_forum" ng-click="clearForm()">
+                New Forum
+            </button>
+
+        </div>
+
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
+                <span class="input-group-btn">
+                    <button type="button" class="btn-u" ng-click="searchForums()">Go</button>
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="panel margin-bottom-40">
+
+        {{filteredLength}}
+        <div ng-if="(forums.length <= 0 || filteredLength == 0) && !pageLoading" class="row">
+            <div class="col-md-8 col-md-offset-2 text-center heading">
+                <h3>No Forums</h3>
+            </div>
+        </div>
+
+        <div ng-if="!pageLoading" class="table-search-v2 margin-bottom-20">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                                    
+                    </thead>
+                    <tbody infinite-scroll='loadMore()' infinite-scroll-disabled='isLoadingMore' infinite-scroll-distance='1'>
+                        <tr ng-repeat="forum in forums | selectedOptionFilterForums:this | unique: 'fid'" ng-class="{'data-row' : true, 'new-data': forum.new}">
+                            <td style="width:15%;">
+                                <img class="rounded-x" src="{{ forum.byimagedp || 'images/default_profile_photo.png'}}" alt="">
+                                <h5 class="text-center color-blue hover-link" ng-click="navigateToUser(forum.uid)">{{forum.byname || 'No Name'}}</h5>
+                            </td>
+                            <td style="width:85%;" class="td-width">
+                                <h3>
+                                    <strong class="color-blue hover-link" ng-click="navigateToForum(forum.fid)">
+                                        {{forum.title}}
+                                    </strong> <small class="hex color-red"> (last active: {{forum.lastact}})</small>&nbsp
+                                    <small ng-if="forum.forumtype==0"><i class="glyphicon glyphicon-lock"></i></small>
+                                    <ul class="list-unstyled list-inline blog-tags pull-right" stop-event>
+                                        <li>
+                                            <a href="javascript:void(0)" ng-if="$parent.favoriteforums.indexOf(forum.fid) == -1" class="blog-tags pull-right" ng-click="markFavorite(forum.fid)">
+                                                <span class="glyphicon glyphicon-star-empty"></span>
+                                            </a>
+                                            <a href="javascript:void(0)" ng-if="$parent.favoriteforums.indexOf(forum.fid) != -1" class="pull-right" ng-click="unmarkFavorite(forum.fid)">
+                                                <span class="glyphicon glyphicon-star"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                </h3>
+                                <h6 class="color-green hover-link" ng-click="navigateToSociety(forum.socid)"><i class="color-green fa fa-map-marker"></i> {{forum.bysocietyname || 'No Society'}}, {{forum.bycity || 'No City'}}</a></h6>
+
+                                <p>{{forum.details}}</p><br>
+
+                                <div class="row">
+
+                                    <div class="col-sm-8">
+                                        <ul class="emoticon-icons text-center" stop-event>
+
+                                            <li class="pull-left">
+                                                <a href="javascript:void(0)" data-original-title="Laugh" ng-class="{'rounded emoticon_laugh_32': true, 'red-border': forumsfeelingemo[forumsfeeling.indexOf(forum.fid)] == 1}" ng-click="postEmoticon(forum.fid, 1)">
+                                                </a>
+                                                <small class="text-center" data-toggle="modal">{{forum.emo.laugh || 0}}</small>
+                                            </li>
+
+                                            <li class="pull-left"><a href="javascript:void(0)" data-original-title="Tongue" ng-class="{'rounded emoticon_tongue_32': true, 'red-border': forumsfeelingemo[forumsfeeling.indexOf(forum.fid)] == 2}" ng-click="postEmoticon(forum.fid, 2)"></a>
+                                                <small class="text-center">{{forum.emo.tongue || 0}}</small>
+                                            </li>
+
+                                            <li class="pull-left"><a href="javascript:void(0)" data-original-title="Love" ng-class="{'rounded emoticon_love_32': true, 'red-border': forumsfeelingemo[forumsfeeling.indexOf(forum.fid)] == 3}" ng-click="postEmoticon(forum.fid, 3)"></a>
+                                                <small class="text-center">{{forum.emo.love || 0}}</small>
+                                            </li>
+
+                                            <li class="pull-left"><a href="javascript:void(0)" data-original-title="Confused" ng-class="{'rounded emoticon_confused_32': true, 'red-border': forumsfeelingemo[forumsfeeling.indexOf(forum.fid)] == 4}" ng-click="postEmoticon(forum.fid, 4)"></a>
+                                                <small class="text-center">{{forum.emo.confused || 0}}</small>
+                                            </li>
+
+                                            <li class="pull-left"><a href="javascript:void(0)" data-original-title="Angry" ng-class="{'rounded emoticon_angry_32': true, 'red-border': forumsfeelingemo[forumsfeeling.indexOf(forum.fid)] == 5}" ng-click="postEmoticon(forum.fid, 5)"></a>
+                                                <small class="text-center">{{forum.emo.angry || 0}}</small>
+                                            </li>
+
+                                            <li class="pull-left"><a href="javascript:void(0)" data-original-title="Evil" ng-class="{'rounded emoticon_evil_32': true, 'red-border': forumsfeelingemo[forumsfeeling.indexOf(forum.fid)] == 6}" ng-click="postEmoticon(forum.fid, 6)"></a>
+                                                <small class="text-center">{{forum.emo.evil || 0}}</small>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <ul class="list-inline comment-list pull-right">
+                                            <li class="hover-link" ng-click="clickForum(forum)" data-toggle="modal" data-target="#show_forum"><i class="glyphicon glyphicon-eye-open"></i> {{forum.totalviews || 0}} views</li>
+                                            <li class="hover-link" ng-click="clickForum(forum)" data-toggle="modal" data-target="#show_forum"><i class="fa fa-comment"></i> {{forum.totalcomments || 0}} comments</li>
+                                        </ul>
+
+                                    </div>
+
+                                </div>
+                            </td>
+                        </tr>
+                                    
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Load More Bar -->
+            <div ng-if="!pageLoading && isLoadingMore && !isLoadCompleted" class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                            <span class="sr-only">100% Complete</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End - Load More Bar -->
+
+        </div>
+
+    </div>
+
+    <!-- Progress Bar -->
+    <div ng-if="pageLoading" class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="progress">
+                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    <span class="sr-only">100% Complete</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End - Progress Bar -->
+
+
+    <!--FORUM EMO SHOW-->
+    <div id="emo_forum" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledbody="myModalLabel" aria-hidden="true" style="display: none;">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-no-border">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+            
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Forum Emo Show - End -->
+
+    <!--FORUM ADD-->
+    <div id="new_forum" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledbody="myModalLabel" aria-hidden="true" style="display: none;">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-no-border">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+            
+                <div class="modal-body">
+
+                    <form action="" class="sky-form">
+                        <header><strong class="main-heading">Start a discussion</strong></header>
+
+                        <fieldset>
+
+                            <section>
+
+                                <div class="text-center color-red" ng-if="addMessage && (addErr != 0)">
+                                    <img id="logo-header" src="images/error_32.png" alt="Error"> {{addMessage}}
+                                </div>
+
+                                <div class="text-center color-green" ng-if="addMessage && (addErr == 0)">
+                                    <img id="logo-header" src="images/suc_32.png" alt="Suc"> {{addMessage}}
+                                </div>
+
+                                <div class="text-center" ng-if="dataLoading">
+                                    <img src="images/page_load.gif">
+                                </div>
+
+                                <label class="label">Title</label>
+                                <label ng-class="{'input': true, 'state-error': addErr == 1}">
+                                    <input type="text" placeholder="Eg. Holi celebration - Any suggestions ?" ng-model="newforum.title" required>
+                                </label>
+                            </section>
+
+                            <section>
+                                <label class="label">Details</label>
+                                <label ng-class="{'textarea': true, 'state-error': addErr == 2}">
+                                    <textarea rows="3" ng-model="newforum.details" placeholder="Enter the details" required></textarea>
+                                </label>
+                            </section>
+
+                        </fieldset>
+                    </form>
+
+                </div>
+
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-danger btn-block" ng-click="postForum(0)">
+                                <span class="glyphicon glyphicon-lock pull-left"></span> Post Private
+                            </button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-primary btn-block" ng-click="postForum(1)">
+                                <span class="glyphicon glyphicon-folder-open pull-left"></span> Post Public
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Forum Add - End -->
+
+    
+
+</div>
+<!--End Forums-->

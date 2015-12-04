@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html lang="en" ng-app="memberApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Telkon | Member</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <!-- Web Fonts -->
+  <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+  <!-- CSS Global Compulsory -->
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/blocks.css">
+
+  <!-- CSS Header and Footer -->
+  <link rel="stylesheet" href="assets/css/headers/header-default.css">
+  <link rel="stylesheet" href="assets/css/footers/footer-v1.css">
+
+  <!-- CSS Implementing Plugins -->
+  <link rel="stylesheet" href="plugins/animate.css">
+  <link rel="stylesheet" href="plugins/line-icons/line-icons.css">
+  <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="plugins/flexslider/flexslider.css">
+  <link rel="stylesheet" href="plugins/parallax-slider/css/parallax-slider.css">
+  <link rel="stylesheet" href="plugins/sky-forms/version-2.0.1/css/custom-sky-forms.css">
+  <link rel="stylesheet" href="plugins/bootstrap3-editable/css/bootstrap-editable.css">
+  <link rel="stylesheet" href="plugins/angular-xeditable-0.1.8/css/xeditable.css" >
+  <link rel="stylesheet" href="plugins/ngEmbed/src/ng-embed.css">
+  <link rel="stylesheet" href="plugins/ngImgCrop/css/ng-img-crop.css">
+  <link rel="stylesheet" href="assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css">
+  <link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
+  <link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
+
+  <!-- CSS Page Style -->
+  <link rel="stylesheet" href="css/pages/profile.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/pages/timeline.css">
+
+  <!-- CSS Customization -->
+  <link rel="stylesheet" href="css/custom.css">
+  
+</head>
+<body ng-class="{'loading': bodyPageLoaderShow}" ng-controller="PageLoadCtrl">
+
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+
+<div class="wrapper" ng-cloak>
+
+    <!--=== HEADER ===-->
+    <div class="header">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <div class="container">
+
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="fa fa-bars"></span>
+                    </button>
+                        <img id="logo-header" src="images/logo_94x32.png" alt="Logo">
+                    </a>
+
+                </div>
+
+                <div class="collapse navbar-collapse navbar-responsive-collapse" ng-controller="HeaderCtrl">
+                    <ul class="nav navbar-nav pull-right">
+                        <li class="active dropdown">
+
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false">
+                               <img ng-if="imagedp" class="rounded-x" width=50px src="{{ imagedp }}" alt="">
+                               <img ng-if="!imagedp" class="rounded-x" width=50px src="images/default_profile_photo.png" alt="">
+                                <strong>{{name || 'Member'}} </strong> <span class="glyphicon glyphicon-chevron-down"></span>
+                            </a>
+                            <ul class="dropdown-menu nav" role="menu">
+
+                                <li><a data-toggle="tab" href="/member#/profile"><i class="glyphicon glyphicon-user"></i> Profile</a></li>
+
+                                <li><a data-toggle="tab" href="/member#/family"><i class="fa fa-users"></i> Family</a></li>
+
+                                <li><a data-toggle="tab" href="/member#/info"><i class="glyphicon glyphicon-home"></i> Society Info</a></li>
+
+                                <li><a data-toggle="tab" href="/member#/settings"><i class="glyphicon glyphicon-cog"></i> Settings</a></li>
+
+                                <li ng-if="mode == 1"><a data-toggle="tab" href="/member#/switch"><i class="glyphicon glyphicon-retweet"></i> Admin Mode</a></li>
+
+                                <li><a data-toggle="tab" href="/member#/reset"><i class="glyphicon glyphicon-refresh"></i> Reset Password</a></li>
+
+                                <li><a data-toggle="tab" href="/member#/account"><i class="glyphicon glyphicon-lock"></i> Account</a></li>
+
+                                <li class="dropdown-submenu">
+                                  <a href="javascript:void(0);"> Telkon <i class="pull-right glyphicon glyphicon-play"></i></a>
+                                  <ul class="dropdown-menu">
+                                      <li><a href='/member#/comingsoon'><i class="glyphicon glyphicon-flash"></i> Coming Soon</a></li>
+                                      <li><a href='/member#/guide'><i class="fa fa-university"></i> Member's Guide</a></li>
+                                  </ul>
+                                </li>
+
+                                <li ng-click="logout()"><a href="javascript:void(0)"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+
+                            </ul>
+
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- ALERT BOX - Start-->
+                <div class="row main-alert-div text-center" ng-controller ="AlertCtrl">
+                    <div class="col-md-2 col-md-offset-5">
+
+                        <div ng-if="showAlertBox && (message.type === 'success')" class="alert fade in alert-dismissable alert-box-fixed alert-box-success-fixed alert-success">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <img id="logo-header" src="images/suc_32.png" alt="Success"> &nbsp <strong>{{message.value}}</strong>
+                        </div>
+
+                        <div ng-if="showAlertBox && (message.type === 'danger')" class="alert fade in alert-dismissable alert-box-fixed alert-box-danger-fixed alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <img id="logo-header" src="images/error_32.png" alt="Error"> &nbsp <strong>{{message.value}}</strong>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End ALERT BOX -->
+
+
+            </div>
+        </div>
+        <!-- End Topbar -->
+
+    </div>
+    <!--=== End Header ===-->
+
+    <!--=== CONTENT ===-->
+    <div class="profile">
+        <div class="container content">
+
+            <div class="row">
+
+                <!--SIDENAV-->
+                <div class="col-md-3 col-sm-3 md-margin-bottom-40">
+
+                    <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1" ng-controller="SidenavCtrl" style="display: block;">
+
+                      <li ng-repeat="option in viewOptions" ng-click="changeShowOption(option)" ng-class="{'list-group-item': true, 'active' : option === selectedOption}">
+                        <a href="#/{{getRoute(option)}}">
+                          <span ng-if="option === viewOptions[0]" class=""><i class="glyphicon glyphicon-home"></i></span>
+                          <span ng-if="option === viewOptions[1]" class=""> <i class="glyphicon glyphicon-bullhorn"></i> </span>
+                          <span ng-if="option === viewOptions[2]" class=""> <i class="fa fa-group"></i> </span>
+                          <span ng-if="option === viewOptions[3]" class=""><i class="glyphicon glyphicon-list-alt"></i></span>
+                          <span ng-if="option === viewOptions[4]" class=""><i class="icon icon-users"></i></span>
+                          <span ng-if="option === viewOptions[5]" class=""><i class="glyphicon glyphicon-file"></i></span>
+                          <span ng-if="option === viewOptions[6]" class=""><i class="glyphicon glyphicon-list-alt"></i></span>
+
+                          {{option}}
+                        </a>
+                      </li>
+
+                    </ul>
+
+                    <hr>
+
+                    <!--Notification-->
+                    <div class="" ng-controller="NotificationCtrl">
+                      <div class="panel-heading-v2 overflow-h">
+
+                        <div class="row">
+
+                          <div class="col-md-6">
+                            <h2 class="heading-xs pull-left"><i class="fa fa-bell-o"></i> Notification</h2>
+                          </div>
+
+                          <div class="col-md-6">
+
+                            <div class="row">
+
+                              <div class="col-md-6">
+                                <span ng-if="total != 0" class="label label-danger">
+                                  <small>{{total}} NEW</small>
+                                </span>
+                              </div>
+
+                              <div class="col-md-6">
+                                <i class="glyphicon glyphicon-repeat hover-link pull-right" ng-click="refreshNotifications()"></i>
+                              </div>
+
+                            </div>
+
+                          </div>
+                        </div>
+
+                      </div>
+                      <ul id="notificationBar" class="list-unstyled mCustomScrollbar margin-bottom-20" data-mcs-theme="minimal-dark">
+
+                        <li ng-repeat="item in notifications" ng-class="{'notification': true, 'new-data': item.new}" ng-click="showNotificationDetails(item.url); changeShowOption(item.tab); clearTotal()">
+                              <i ng-if="item.infotype == 1" class="icon-custom icon-sm rounded-x icon-bg-red icon-line icon-note"></i>
+                              <i ng-if="item.infotype == 2" class="icon-custom icon-sm rounded-x icon-bg-green icon-line icon-bulb"></i>
+                              <i ng-if="item.infotype == 3" class="icon-custom icon-sm rounded-x icon-bg-yellow icon-line icon-credit-card"></i>
+                              <i ng-if="item.infotype == 4" class="icon-custom icon-sm rounded-x icon-bg-orange icon-line icon-call-end"></i>
+                              <i ng-if="item.infotype == 5" class="icon-custom icon-sm rounded-x icon-bg-blue icon-line icon-users"></i>
+                              <i ng-if="item.infotype == 6" class="icon-custom icon-sm rounded-x icon-bg-purple icon-line icon-user-following"></i>
+                              <i ng-if="item.infotype == 7" class="icon-custom icon-sm rounded-x icon-bg-dark icon-line icon-share"></i>
+
+                              <div class="overflow-h">
+                                  <small class="pull-right">{{item.date}}</small>
+                                  <span><strong>{{item.title}}</strong></span>
+                                  <strong class="color-blue hover-link">{{item.message.substring(0, item.message.indexOf(':'))}}</strong>
+                                  <small>{{item.message.substring(1 + item.message.indexOf(':'))}}</small>
+                              </div>
+                          </li>
+                      </ul>
+
+                      <div class="text-center" ng-if="isLoadingMore">
+                        <img src="images/page_load.gif">
+                      </div>
+
+                      <button ng-if="!isLoadCompleted && !isLoadingMore && notifications && notifications.length>0" type="button" class="btn-u btn-u-default btn-u-sm btn-block" ng-click="loadMore()">Load More</button>
+                      
+                    </div>
+
+                    <div class="text-center" ng-if="notificationLoading">
+                        <img src="images/page_load.gif">
+                      </div>
+
+                    <!--End Notification-->
+
+                </div>
+                <!--End Sidenav-->
+
+                <div class="col-md-9 col-sm-9">
+
+                  <!--CONTENT BODY-->
+                    <div class="profile-body margin-bottom-20">
+                        <div class="tab-v1">
+
+                            <div class="tab-content">
+
+                              <ul class="nav nav-justified nav-tabs" ng-controller="TabCtrl">
+
+                                <li ng-repeat="option in viewOptions" ng-click="changeShowOption(option)" ng-class="{'active' : option === selectedOption, 'tabs-border-right' : option !== viewOptions[viewOptions.length-1]}" ng-disabled="!society.issupported">
+                                  <a href="#/{{option.toLowerCase()}}">
+
+                                    <strong>{{option}}</strong>
+
+                                    <span class="badge badge-red rounded-2x pull-right"></span>
+                                  </a>
+                                </li>
+
+                              </ul>
+
+                              <br/>
+
+                              <div ng-view></div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <!--/end row-->
+
+        </div>
+        <!--/container-->
+
+    </div>
+    <!--=== End Content ===-->
+    
+</div>
+<!--/wrapper-->
+
+
+<div class="modal-page-load"></div>
+
+
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+
+  <!-- JS Global Compulsory -->
+  <script type="text/javascript" src="plugins/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="plugins/jquery/jquery-migrate.min.js"></script>
+  <script type="text/javascript" src="plugins/bootstrap/js/bootstrap.min.js"></script>
+
+  <!-- JS Libraries -->
+  <script type="text/javascript" src="js/lib/angular.min.js"></script>
+  <script type="text/javascript" src="js/lib/angular-resource.min.js"></script>
+  <script type="text/javascript" src="js/lib/angular-sanitize.min.js"></script>
+  <script type="text/javascript" src="js/lib/angular-route.min.js"></script>
+  <script type="text/javascript" src="js/lib/moment.min.js"></script>
+  <script type="text/javascript" src="js/lib/socket.io.js"></script>
+  <script type="text/javascript" src="js/lib/ng-infinite-scroll.js"></script>
+  <script type="text/javascript" src="js/plugins/bootbox.min.js"></script>
+  <script type="text/javascript" src="js/lib/aws-sdk.min.js"></script>
+
+  <!-- JS Implementing Plugins -->
+  <script type="text/javascript" src="plugins/back-to-top.js"></script>
+  <script type="text/javascript" src="plugins/flexslider/jquery.flexslider-min.js"></script>
+  <script type="text/javascript" src="plugins/parallax-slider/js/modernizr.js"></script>
+  <script type="text/javascript" src="plugins/parallax-slider/js/jquery.cslider.js"></script>
+  <script type="text/javascript" src="plugins/bootstrap3-editable/js/bootstrap-editable.js"></script>
+  <script type="text/javascript" src="plugins/angular-xeditable-0.1.8/js/xeditable.min.js"></script>
+  <script type="text/javascript" src="plugins/angular-file-upload/angular-file-upload.js"></script>
+  <script type="text/javascript" src="plugins/angular-file-upload/angular-file-upload-shim.js"></script>
+  <script type="text/javascript" src="plugins/ngEmbed/src/ng-embed.js"></script>
+  <script type="text/javascript" src="plugins/ngImgCrop/js/ng-img-crop.js"></script>
+  <script type="text/javascript" src="plugins/smoothScroll.js"></script>
+  <script type="text/javascript" src="assets/plugins/counter/waypoints.min.js"></script>
+  <script type="text/javascript" src="assets/plugins/counter/jquery.counterup.min.js"></script>
+  <script type="text/javascript" src="plugins/circles-master/circles.js"></script>
+  <script type="text/javascript" src="plugins/sky-forms-pro/skyforms/js/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
+  <script type="text/javascript" src="assets/js/plugins/datepicker.js"></script>
+
+  <!-- Configuration File -->
+  <script type="text/javascript" src="js/config.js"></script>
+  <script type="text/javascript" src="js/helper.js"></script>
+
+  <!-- Member App File -->
+  <script type="text/javascript" src="js/myapp.js"></script>
+  <script type="text/javascript" src="memberapp.js"></script>
+
+  <!-- Services -->
+  <script type="text/javascript" src="js/services/memberservices.js"></script>
+
+  <!-- Directives -->
+
+  <!-- Controllers -->
+  <script type="text/javascript" src="js/controllers/member.js"></script>
+  <script type="text/javascript" src="js/controllers/membernotices.js"></script>
+  <script type="text/javascript" src="js/controllers/membercomplaints.js"></script>
+  <script type="text/javascript" src="js/controllers/memberclassifieds.js"></script>
+  <script type="text/javascript" src="js/controllers/membercontacts.js"></script>
+  <script type="text/javascript" src="js/controllers/memberforums.js"></script>
+  <script type="text/javascript" src="js/controllers/memberclubs.js"></script>
+  <script type="text/javascript" src="js/controllers/memberutils.js"></script>
+  <script type="text/javascript" src="js/controllers/membermisc.js"></script>
+  <script type="text/javascript" src="js/controllers/memberprofile.js"></script>
+  <script type="text/javascript" src="js/controllers/membernotifications.js"></script>
+
+  <!-- JS Customization -->
+  <script type="text/javascript" src="js/custommember.js"></script>
+
+  <!-- JS Page Level -->
+  <script type="text/javascript" src="js/plugins/parallax-slider.js"></script>
+  <script type="text/javascript" src="js/plugins/style-switcher.js"></script>
+  <script type="text/javascript">
+      jQuery(document).ready(function () {
+          App.init();
+          App.initCounter();
+          App.initScrollBar();
+          Datepicker.initDatepicker();
+      });
+  </script>
+  <!--[if lt IE 9]>
+  <script src="assets/plugins/respond.js"></script>
+  <script src="assets/plugins/html5shiv.js"></script>
+  <script src="assets/js/plugins/placeholder-IE-fixes.js"></script>
+  <![endif]-->
+
+</body>
+</html>

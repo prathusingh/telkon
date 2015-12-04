@@ -1,0 +1,245 @@
+<!--SIDENAV HOME - CONTACTS-->
+<div class="profile-edit tab-pane fade in active" ng-controller="ContactsCtrl">
+
+     <!-- Tab v1 -->                
+    <div class="tab-v1">
+
+        <ul class="nav nav-justified nav-tabs">
+            <li ng-repeat="tab in tabs" ng-class="{'active': selectedTab == $index}">
+                <a href="javascript:void(0)" data-toggle="tab" ng-click="changeTab($index)">
+                    {{tab}}
+                </a>
+            </li>
+        </ul>
+
+        <br>
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn-u">Go</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div class="tab-content">
+
+            <div ng-if="selectedTab == 0" class="tab-pane fade in active">
+                
+                <div class="panel margin-bottom-40">
+
+                    <br>
+                    <!-- Progress Bar -->
+                    <div ng-if="pageLoading" class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                    <span class="sr-only">100% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End - Progress Bar -->
+
+                    <div ng-if="contacts.length > 0 && !pageLoading" class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center heading">
+                            <h3>Service Contacts</h3>
+                        </div>
+                    </div>
+
+                    <table ng-if="!pageLoading" class="table table-hover panel panel-blue">
+                        <thead>
+                            <tr class="info">
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="contact in contacts | searchFilterContacts:this">
+                                <td>
+                                    <i ng-if="contact.servicetype === 'Electrician'" class="icon-custom icon-sm rounded-x icon-bg-green icon-line icon-bulb"></i>
+                                    <i ng-if="contact.servicetype === 'Plumber'" class="icon-custom icon-sm rounded-x icon-bg-green icon-line icon-wrench"></i>
+                                    <i ng-if="contact.servicetype === 'Driver'" class="icon-custom icon-sm rounded-x icon-bg-green icon-line icon- icon-speedometer"></i>
+                                    <i ng-if="contact.servicetype === 'Mechanic'" class="icon-custom icon-sm rounded-x icon-bg-green icon-line icon-settings"></i>
+                                    <i ng-if="contact.servicetype === 'Carpenter'" class="icon-custom icon-sm rounded-x icon-bg-green icon-line icon-basket"></i>
+                                    <i ng-if="contact.servicetype === 'Maid'" class="icon-custom icon-sm rounded-x icon-bg-green icon-line icon-trash"></i>
+                                    <i ng-if="contact.servicetype === 'Cook'" class="icon-custom icon-sm rounded-x icon-bg-green icon-line icon-cup"></i>
+                                    <i ng-if="contact.servicetype === 'Gardener'" class="icon-custom icon-sm rounded-x icon-bg-green icon-line icon-hourglass"></i>
+                                    <i ng-if="contact.servicetype === 'Painter'" class="icon-custom icon-sm rounded-x icon-bg-green icon-line icon-magic-wand"></i>
+                                    <i ng-if="contact.servicetype === 'Others'" class="icon-custom icon-sm rounded-x icon-bg-green icon-line icon-globe"></i>
+                                </td>
+                                <td>{{contact.servicetype}}</td>
+                                <td>{{contact.name}}</td>
+                                <td>{{contact.phone}}</td>
+                                <td>{{contact.email || 'No Email'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div ng-if="contacts.length <= 0 && !pageLoading" class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center heading">
+                            <h3>No Service Contacts</h3>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div ng-if="selectedTab == 1" class="tab-pane fade in active" id="aroundme">
+                
+                <div class="panel margin-bottom-40">
+
+                    <br>
+                    <!-- Progress Bar -->
+                    <div ng-if="pageLoading" class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                    <span class="sr-only">100% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End - Progress Bar -->
+
+                    <div ng-if="contacts.length > 0 && !pageLoading" class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center heading">
+                            <h3>Around Me Contacts</h3>
+                        </div>
+                    </div>
+
+                    <table ng-if="!pageLoading" class="table table-hover panel panel-blue">
+                        <thead ng-if="contacts.length > 0">
+                            <tr class="info">
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Location</th>
+                                </tr>
+                            </thead>
+                        <tbody>
+                            <tr ng-repeat="contact in contacts">
+                                <td>{{contact.name}}</td>
+                                <td>{{contact.phone}}</td>
+                                <td>{{contact.location}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div ng-if="contacts.length <= 0 && !pageLoading" class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center heading">
+                            <h3>No Around Me Contacts</h3>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div ng-if="selectedTab == 2" class="tab-pane fade in active" id="rwa">
+                
+                <div class="panel margin-bottom-40">
+                    
+                    <br>
+                    <!-- Progress Bar -->
+                    <div ng-if="pageLoading" class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                    <span class="sr-only">100% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End - Progress Bar -->
+
+                    <div ng-if="contacts.length > 0 && !pageLoading" class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center heading">
+                            <h3>RWA/Association Contacts</h3>
+                        </div>
+                    </div>
+
+                    <table ng-if="!pageLoading" class="table table-hover panel panel-blue">
+                        <thead>
+                            <tr class="info">
+                            </tr>
+                            </thead>
+                        <tbody>
+                            <tr ng-repeat="contact in contacts">
+                                <td>
+                                    <div class="date-formats">
+                                        <span>{{contact.position.substring(0, 1)}}</span>
+                                    </div>
+                                </td>
+                                <td>{{contact.position}}</td>
+                                <td>{{contact.name || 'No Name'}}</td>
+                                <td>{{contact.phone || 'No Phone'}}</td>
+                                <td>{{contact.email || 'No Email'}}</td>
+                                <td>{{contact.flat || 'N/A'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div ng-if="contacts.length <= 0 && !pageLoading" class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center heading">
+                            <h3>No RWA/Association Contacts</h3>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div ng-if="selectedTab == 3" class="tab-pane fade in active" id="intercom">
+                
+                <div class="panel margin-bottom-40">
+                    
+                    <br>
+
+                    <!-- Progress Bar -->
+                    <div ng-if="pageLoading" class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                    <span class="sr-only">100% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End - Progress Bar -->
+
+                    <div ng-if="contacts.length > 0 && !pageLoading" class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center heading">
+                            <h3>Intercom Contacts</h3>
+                        </div>
+                    </div>
+
+                    <table ng-if="!pageLoading" class="table table-hover panel panel-blue">
+                        <thead ng-if="contacts.length > 0">
+                            <tr class="info">
+                                <th>Location</th>
+                                <th>Number</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="contact in contacts">
+                                <td>{{contact.location}}</td>
+                                <td>{{contact.phone}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div ng-if="contacts.length <= 0 && !pageLoading" class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center heading">
+                            <h3>No Intercom Contacts</h3>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

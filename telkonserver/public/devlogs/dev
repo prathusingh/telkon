@@ -1,0 +1,28 @@
+Data sent successfully
+Data sent successfully
+Data sent successfully
+Data sent successfully
+Data sent successfully
+Data sent successfully
+SUC: Jun 24, 2015 1:22 PM * 127.0.0.1 * AUTH * GET * /auth/login/form * 304 * 73.050 ms ==> Data sent successfully
+
+SUC: Jun 24, 2015 1:22 PM * 127.0.0.1 * UbknWPOt6TjdkVs4tLlqUZ63JV0yOV5n * GET * /user/cities * 304 * 20.518 ms ==> Data sent successfully
+
+SUC: Jun 24, 2015 1:22 PM * 127.0.0.1 * UbknWPOt6TjdkVs4tLlqUZ63JV0yOV5n * POST * /user/societies/Bangalore * 200 * 83.151 ms ==> Data sent successfully
+
+SUC: Jun 24, 2015 1:22 PM * 127.0.0.1 * AUTH * GET * /auth/login/form * 304 * 12.310 ms ==> Data sent successfully
+
+SUC: Jun 24, 2015 1:22 PM * 127.0.0.1 * AUTH * GET * /auth/login/form * 304 * 14.773 ms ==> Data sent successfully
+
+SUC: Jun 24, 2015 1:22 PM * 127.0.0.1 * 2UJpA5h301b5U4Rpr84t5PbTj5aIAyP9 * POST * /admin/profile/boot * 200 * 13.972 ms ==> Data sent successfully
+
+SUC: Jun 24, 2015 1:22 PM * 127.0.0.1 * 2UJpA5h301b5U4Rpr84t5PbTj5aIAyP9 * POST * /admin/notifications * 200 * 26.365 ms ==> Data sent successfully
+
+SUC: Jun 24, 2015 1:22 PM * 127.0.0.1 * 2UJpA5h301b5U4Rpr84t5PbTj5aIAyP9 * POST * /admin/notices * 200 * 40.737 ms ==> Data sent successfully
+
+SUC: Jun 24, 2015 1:22 PM * 127.0.0.1 * 2UJpA5h301b5U4Rpr84t5PbTj5aIAyP9 * POST * /admin/notices/chunk * 200 * 7.788 ms ==> Data sent successfully
+
+SUC: Jun 24, 2015 1:22 PM * 127.0.0.1 * 2UJpA5h301b5U4Rpr84t5PbTj5aIAyP9 * POST * /admin/members * 200 * 49.872 ms ==> Data sent successfully
+
+SUC: Jun 24, 2015 1:22 PM * 127.0.0.1 * 2UJpA5h301b5U4Rpr84t5PbTj5aIAyP9 * POST * /admin/members/chunk * 200 * 16.896 ms ==> Data sent successfully
+

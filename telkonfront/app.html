@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="websiteApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Telkon</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <!-- Web Fonts -->
+  <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+  <!-- CSS Global Compulsory -->
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/blocks.css">
+  <link rel="stylesheet" href="css/app.css">
+
+  <!-- CSS Implementing Plugins -->
+  <link rel="stylesheet" href="css/plugins.css">
+  <link rel="stylesheet" href="plugins/bootstrap-select/css/bootstrap-select.min.css">
+  <link rel="stylesheet" href="plugins/line-icons/line-icons.css">
+  <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="plugins/sky-forms/version-2.0.1/css/custom-sky-forms.css">
+  <link rel="stylesheet" href="plugins/brand-buttons/brand-buttons-inversed.css">
+  <link rel="stylesheet" href="assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
+  <link rel="stylesheet" href="assets/plugins/layer-slider/layerslider/css/layerslider.css">
+
+  <!--[if lt IE 9]><link rel="stylesheet" href="plugins/revolution-slider/rs-plugin/css/settings-ie8.css" type="text/css" media="screen"><![endif]-->
+  <!--[if lt IE 9]><link rel="stylesheet" href="plugins/revolution-slider/rs-plugin/css/settings-ie8.css" type="text/css" media="screen"><![endif]-->
+
+  <!-- CSS Theme -->
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/pages/register.css">
+  <link rel="stylesheet" href="css/pages/index.css">
+
+  <!-- CSS Customization -->
+  <link rel="stylesheet" href="css/custom.css">
+  
+</head>
+<body>
+
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+
+  <div class="wrapper" ng-cloak>
+    
+    <!--=== HEADER ===-->
+    <div class="header">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <div class="container">
+
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a id="website-link" class="navbar-brand" href="">
+                        <img id="logo-header" src="images/logo_94x32.png" alt="Logo">
+                    </a>
+
+                </div>
+
+                <div class="loginbar pull-right">
+                    <a href="#/main">Log In</a>
+                    <button type="submit" class="btn btn-primary margin-left-5" onclick="location.href = '#/register'">
+                        Create Account
+                    </button>
+                </div>
+
+            </div>
+        </div>
+        <!-- End Topbar -->
+
+    </div>
+    <!--=== End Header ===-->
+
+    
+    <div id="view" ng-view></div>
+
+    <!--
+    <div ng-include src="'partials/footer.html'"></div>
+    -->
+
+  </div>
+  
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <!-- JS Global Compulsory -->
+  <script type="text/javascript" src="plugins/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="plugins/jquery/jquery-migrate.min.js"></script>
+  <script type="text/javascript" src="plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/plugins/bootbox.min.js"></script>
+
+  <!-- JS Plugins -->
+  <script type="text/javascript" src="assets/plugins/backstretch/jquery.backstretch.min.js"></script>
+  <script type="text/javascript" src="plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+  <script type="text/javascript" src="assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
+  <script type="text/javascript" src="assets/plugins/layer-slider/layerslider/js/greensock.js"></script>
+  <script type="text/javascript" src="assets/plugins/layer-slider/layerslider/js/layerslider.transitions.js"></script>
+  <script type="text/javascript" src="assets/plugins/layer-slider/layerslider/js/layerslider.kreaturamedia.jquery.js"></script>
+  <!--
+  <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+  -->
+  <script type="text/javascript" src="assets/js/plugins/layer-slider.js"></script>
+  <script type="text/javascript" src="assets/js/plugins/owl-carousel.js"></script>
+  <script type="text/javascript" src="assets/js/plugins/owl-recent-works.js"></script>
+
+  <!-- JS Libraries -->
+  <script type="text/javascript" src="js/lib/angular.min.js"></script>
+  <script type="text/javascript" src="js/lib/angular-resource.min.js"></script>
+  <script type="text/javascript" src="js/lib/angular-sanitize.min.js"></script>
+  <script type="text/javascript" src="js/lib/angular-route.min.js"></script>
+  <script type="text/javascript" src="js/lib/angular-bootstrap-select.js"></script>
+
+
+  <!-- Configuration File -->
+  <script type="text/javascript" src="js/config.js"></script>
+
+  <!-- Helper File -->
+  <script type="text/javascript" src="js/helper.js"></script>
+
+  <!-- Website App File -->
+  <script type="text/javascript" src="app.js"></script>
+
+  <!-- Custom File -->
+  <script type="text/javascript" src="js/custom.js"></script>
+
+  <!-- Services -->
+  <script type="text/javascript" src="js/services/user.js"></script>
+
+  <!-- Directives -->
+
+  <!-- Controllers -->
+  <script type="text/javascript" src="js/controllers/user.js"></script>
+
+  <script type="text/javascript">
+
+      jQuery(document).ready(function() {
+        
+        
+        
+      });
+    </script>
+
+  
+</body>
+</html>
